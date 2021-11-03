@@ -1,0 +1,189 @@
+/*폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/**헤더**/
+.header{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: cornflowerblue;
+}
+
+.logo{
+  width: 10%;
+  height: 50px;
+  margin-right: 20px;
+  background-color: dimgray;
+}
+.user_link{
+  width: 74%;
+  height: 50px;
+  background-color: forestgreen;
+}
+
+.twinkle{
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  background-color: fuchsia;
+}
+
+/**좌측 비디오 섹션**/
+.left_box{
+  width: 55%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  float: left;
+}
+
+.video_play{
+  width: 80%;
+  height: 50%;
+  background-color: red;
+}
+
+.video_information{
+  width: 80%;
+  height: 12%;
+  margin: 15px 0 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_1, .info_2, .info_3{
+  width: 16%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.info_1{
+  width: 54%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info_2{
+  width: 25%;
+  margin: 0 20px;
+}
+
+.rank_text{
+  font-size: 1rem;
+  color: #3ea6ff;
+  font-weight: 400;
+}
+.name_text{
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin: 0.3rem 0 0.8rem 0;
+}
+.views_text{
+  font-size: 0.85rem;
+  color: #aaaaaa;
+}
+
+.youtuber_pic{
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  margin-right: 10px;
+  background-color: green;
+}
+
+.youtuber_name_text{
+  font-size: 1.4rem;
+  padding-top: 0.2rem;
+  letter-spacing: 1.2px;
+}
+
+.subscriber_number{
+  font-size: 0.8rem;
+  margin-top: 5px;
+  color: #aaaaaa;
+}
+
+.like, .dislike{
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  font-size: 1.6rem;
+  color: #cccccc;
+}
+
+.dislike{
+  transform: scaleX(-1);
+}
+
+.video_input_chat{
+  width: 80%;
+  height: 12%;
+}
+.user_input_chat{
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.user_pic{
+  width: 38px;
+  height: 38px;
+  margin-right: 10px;
+  border-radius: 100%;
+  background-color: rosybrown;
+}
+
+.user_comment{
+  width: 94%;
+  height: 35px;
+  border: none;
+  border-bottom: 1.5px solid #333333;
+}
+
+.user_comment_send{
+  width: 90px;
+  height: 40px;
+  background-color: #f0f0f0;
+  margin-top: 15px;
+  border: none;
+  float: right;
+}
+input:focus{outline: none;}
+
+/**우측 댓글 섹션**/
+.right_box{
+  width: 45%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  float: right;
+}
+
+.chat_output{
+  width: 80%;
+  height: 55%;
+  box-shadow: 0px 13px 20px #f0f0f0;
+}
+
+.chat_rank{
+  width: 80%;
+  height: 25%;
+  margin-top: 15px;
+  box-shadow: 0px 13px 20px #f0f0f0;
+}
