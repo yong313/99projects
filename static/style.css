@@ -92,6 +92,7 @@
 
 .twinkle:hover{
   background-color: #5a5a5a;
+  transition: 0.35s;
   color: #ffffff;
 }
 
@@ -330,7 +331,7 @@
 .list_1{
   width: 100%;
   height: auto;
-  margin-top: 0.2rem;
+  margin-top: 0.6rem;
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -389,6 +390,12 @@
 
 .fa-edit{
   margin-right: 15px;
+}
+
+.fa-edit:hover, .fa-trash-alt:hover{
+  color: #5a5a5a;
+  font-weight: bold;
+  transition: 0.35s;
 }
 
 .list_user_text{
