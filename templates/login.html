@@ -22,9 +22,10 @@
                 data:{email:email, password:pw},
                 success: function (response) {
                     if(response['msg']=='success') {
+                        $.cookie('mytoken', response['token']);
                         alert('환영합니다!')
                         localStorage.setItem('jwt',response['token'])
-                        window.location.href = '/'
+                        window.location.href = '/home'
                     } else {
                         alert('ID와 비밀번호를 확인해주세요!')
                     }
