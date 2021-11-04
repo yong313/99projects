@@ -109,14 +109,17 @@
 
 .logout_button:focus, .withdrawal:focus{
   color: #ffffff;
-  background-color: #cccccc;
+  background-color: #979797;
   transition: 0.3s;
 }
 
 .logout_button:hover, .withdrawal:hover{
   color: #ffffff;
-  background-color: #cccccc;
+  background-color: #979797;
   transition: 0.3s;
+}
+.withdrawal:focus, .withdrawal:hover{
+  background-color: #fa4e4e;
 }
 
 /**좌측 비디오 섹션**/
