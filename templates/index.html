@@ -8,12 +8,13 @@
   <link rel="shortcut icon" type="image/x-icon" href="/commend/favicon.ico">
   <!--fontawesome-->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!--java script-->
+  <script src="/static/index.js"></script>
   <!--reset.css-->
   <link rel="stylesheet" href="/static/reset.css">
   <!--style.css-->
   <link rel="stylesheet" href="/static/style.css">
   <!--java script-->
-  <script src="/static/index.js"></script>
   <title>분노의 투기장 - ARENA of ANGER</title>
 </head>
 <body>
@@ -21,10 +22,10 @@
   <div class="header">
     <div class="logo"></div>
     <div class="user_link">
-      <input type="text" name="" class="user_link_text" id="" placeholder="🔥 보고싶은 유투브 링크를 추가해주세요 🔥">
+      <input type="text" name="" class="user_link_text" id="place" placeholder="🔥 보고싶은 유투브 링크를 추가해주세요 🔥">
       <input type="submit" class="user_link_button" value="전송하기">
     </div>
-    <div class="twinkle">
+    <div class="twinkle" onclick="onoff()">
       <i class="far fa-moon"></i>
     </div>
     <input type="submit" class="withdrawal" value="회원탈퇴">
@@ -40,7 +41,7 @@
     <div class="video_information">
       <!--동영상정보: 실시간 순위 / 동영상 제목 / 좋아요&싫어요-->
       <div class="info_1">
-        <p class="rank_text">인기 급상승 동영상 #36</p>
+        <p class="rank_text">⚔️ 분노의 투기장 - ARENA of ANGER ⚔️</p>
         <p class="name_text">독기 가득 충전해온 주호민</p>
         <p class="views_text">조회수 554,905회 2021. 10. 30.</p>
       </div>
@@ -54,15 +55,15 @@
       </div>
       <!--좋아요&싫어요-->
       <div class="info_3">
-        <div class="like">
-          <i class="far fa-thumbs-up"></i>
-          <p class="info_like_number">
+        <div class="like" onclick="like_color_change_blue()">
+          <i class="far fa-thumbs-up"  id="like_color_change"></i>
+          <p class="info_like_number" id="like_color_change_2">
             230,4058
           </p>
         </div>
-        <div class="dislike">
-          <i class="far fa-thumbs-down"></i>
-          <p class="info_like_number">
+        <div class="dislike" onclick="like_color_change_red()">
+          <i class="far fa-thumbs-down" id="dislike_color_change"></i>
+          <p class="info_like_number" id="dislike_color_change_2">
             3058
           </p>
         </div>

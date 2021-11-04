@@ -11,7 +11,7 @@
 }
 
 .logo{
-  width: 24.5%;
+    width: 24.5%;
     height: 32.5px;
     background-image: url(/commend/99pro_logo.svg);
     background-repeat: no-repeat;
@@ -234,14 +234,14 @@
   transform: none;
 }
 
-.fa-thumbs-up:hover{
+.like:hover{
   transition: 0.35s;
-  color: #3ea6ff;
+  color: #b3dbff;
 }
 
-.fa-thumbs-down:hover{
+.dislike:hover{
   transition: 0.35s;
-  color: #fa4e4e;
+  color: #eea8a8;
 }
 
 .video_input_chat{
@@ -310,10 +310,10 @@
   flex-direction: column;
   float: right;
 
-  animation: fadein 3.25s;
-  -moz-animation: fadein 3.25s;
-  -webkit-animation: fadein 3.25s;
-  -o-animation: fadein 3.25s;
+  animation: fadein 2.25s;
+  -moz-animation: fadein 2.25s;
+  -webkit-animation: fadein 2.25s;
+  -o-animation: fadein 2.25s;
 }
 
 .chat_output{
