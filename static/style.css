@@ -12,20 +12,113 @@
 .logo{
   width: 10%;
   height: 50px;
-  margin-right: 20px;
   background-color: dimgray;
 }
-.user_link{
-  width: 74%;
+
+.space{
+  width: 14%;
   height: 50px;
-  background-color: forestgreen;
+}
+
+.user_link{
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user_link_text{
+  width: 40%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  margin-right: 10px;
+  padding-left: 15px;
+  background-color: #f0f0f0;
+}
+
+.user_link_text:hover{
+  color: transparent;
+  background-color: #b3dbff;
+  transition: 0.35s;
+}
+
+.user_link_text:focus{
+  outline: none;
+  color: #ffffff;
+  background-color: #3ea6ff;
+  transition: 0.85s;
+}
+
+.user_link_text:focus::placeholder{
+  color: transparent;
+}
+
+.user_link_button{
+  width: 100px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 15px;
+  margin-right: 10px;
+  color: #5a5a5a;
+  font-size: 0.8rem;
+}
+
+.user_link_button:hover{
+  color: #ffffff;
+  background-color: #3ea6ff;
+  transition: 0.3s;
+}
+
+.user_link_button:focus{
+  color: #ffffff;
+  background-color: #3ea6ff;
+  transition: 0.3s;
 }
 
 .twinkle{
-  width: 50px;
-  height: 50px;
-  margin-left: 20px;
-  background-color: fuchsia;
+  width: 40px;
+  height: 40px;
+  margin: 0 20px;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a5a5a;
+}
+
+.twinkle:hover{
+  background-color: #5a5a5a;
+  color: #ffffff;
+}
+
+.logout_button, .withdrawal{
+  width: 100px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 15px;
+  color: #5a5a5a;
+  font-size: 0.8rem;
+}
+
+.withdrawal{
+  margin-right: 10px;
+}
+
+.logout_button:focus, .withdrawal:focus{
+  color: #ffffff;
+  background-color: #cccccc;
+  transition: 0.3s;
+}
+
+.logout_button:hover, .withdrawal:hover{
+  color: #ffffff;
+  background-color: #cccccc;
+  transition: 0.3s;
 }
 
 /**좌측 비디오 섹션**/
@@ -230,6 +323,10 @@
   overflow-y: scroll;
 }
 
+.comment_list::-webkit-scrollbar {
+  display: none;
+}
+
 .list_1{
   width: 100%;
   height: auto;
@@ -267,23 +364,41 @@
   font-size: 0.7rem;
 }
 
+.list_user_form{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
 .list_user_name{
-  width: 100px;
+  width: auto;
   height: 20px;
-  margin-bottom: 5px;
+  margin-right: 25px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 20px;
+}
+
+.fa-edit, .fa-trash-alt{
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #cccccc;
+}
+
+.fa-edit{
+  margin-right: 15px;
 }
 
 .list_user_text{
   width: 100%;
   height: auto;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   word-break:break-all;
-  letter-spacing: 1px;
-  line-height: 1.2rem;
+  letter-spacing: 0.5px;
+  line-height: 1.1rem;
 }
 
 .chat_rank{
