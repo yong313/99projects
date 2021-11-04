@@ -128,6 +128,11 @@
   align-items: center;
   flex-direction: column;
   float: left;
+
+  animation: fadein 2.25s;
+  -moz-animation: fadein 2.25s;
+  -webkit-animation: fadein 2.25s;
+  -o-animation: fadein 2.25s;
 }
 
 .video_play{
@@ -300,6 +305,11 @@
   align-items: center;
   flex-direction: column;
   float: right;
+
+  animation: fadein 3.25s;
+  -moz-animation: fadein 3.25s;
+  -webkit-animation: fadein 3.25s;
+  -o-animation: fadein 3.25s;
 }
 
 .chat_output{
@@ -443,4 +453,38 @@
 
 #rank_gold, #rank_silver, #rank_bronze{
   color: #3ea6ff;
+}
+
+
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadein { /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
 }
