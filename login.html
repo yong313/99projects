@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <script type="text/javascript">
+
+        function login_info() {
+            let email = $('#input_id').val();
+            let pw = $('#input_pw').val();
+
+            $.ajax({
+                type:'POST',
+                url:'/api/login',
+                data:{email:email, password:pw},
+                success: function (response) {
+                    if(response['msg']=='success') {
+                        alert('환영합니다!')
+                        localStorage.setItem('jwt',response['token'])
+                        window.location.href = '/'
+                    } else {
+                        alert('ID와 비밀번호를 확인해주세요!')
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <section class="hero is-info">
+      <div class="hero-body">
+        <p class="title">
+          Login Page
+        </p>
+        <p class="subtitle">
+          로그인 정보를 입력해주세요
+        </p>
+      </div>
+    </section>
+
+    <div style="margin-top: 73px" class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input id="input_id" class="input" type="email" placeholder="Email을 입력해주세요">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input id="input_pw" class="input" type="password" placeholder="비밀번호를 입력해주세요">
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="button is-success" onclick="login_info()">
+          Login
+        </button>
+      </p>
+    </div>
+</body>
+</html>
