@@ -225,11 +225,11 @@
   font-size: 0.5rem;
 }
 
-.dislike{
+.fa-thumbs-down{
   transform: scaleX(-1);
 }
 
-.dislike, .info_like_number{
+.info_like_number{
   transform: none;
 }
 
