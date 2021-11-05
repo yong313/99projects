@@ -177,8 +177,8 @@
 
 .video_information{
   width: 80%;
-  height: 12%;
-  margin: 20px 0 30px 0;
+  height: auto;
+  margin: 1.6rem 0 1.9rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,25 +193,25 @@
   flex-direction: row;
 }
 .info_1{
-  width: 54%;
+  width: 52%;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .info_2{
-  width: 25%;
-  margin: 0 20px;
+  width: 27%;
+  margin: 0 15px;
 }
 
 .rank_text{
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #3ea6ff;
   font-weight: 400;
 }
 .name_text{
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  margin: 0.5rem 0 0.8rem 0;
+  margin: 0.45rem 0 0.7rem 0;
 }
 .views_text{
   font-size: 0.85rem;
@@ -227,26 +227,26 @@
 }
 
 .youtuber_name_text{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding-top: 0.2rem;
   letter-spacing: 1px;
 }
 
 .subscriber_number{
   font-size: 0.8rem;
-  margin-top: 5px;
+  margin-top: 8px;
   color: #aaaaaa;
 }
 
 .like, .dislike{
-  width: 80px;
+  width: 70px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 0 5px;
-  font-size: 1.8rem;
+  margin: 0 0.35px;
+  font-size: 1.65rem;
   color: #cccccc;
 }
 
@@ -275,7 +275,8 @@
 
 .video_input_chat{
   width: 80%;
-  height: 12%;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
 .user_input_chat{
@@ -302,11 +303,11 @@
 
 .user_comment:focus{
   outline: none;
-  border-bottom: 1.5px solid #3ea6ff;
+  border-bottom: 1.2px solid #3ea6ff;
 }
 
 .user_comment:hover{
-  border-bottom: 1.5px solid #3ea6ff;
+  border-bottom: 1.2px solid #3ea6ff;
   transition: 0.6s;
 }
 
@@ -363,7 +364,11 @@
   overflow-x: hidden;
   overflow-y: scroll;
   display: flex;
+<<<<<<< HEAD
   justify-items: center;
+=======
+  justify-content: flex-start;
+>>>>>>> 99c75dbf11c38d9d8184c67f70b94e317c17ffed
   align-items: center;
   flex-direction: column-reverse;
 }
