@@ -11,7 +11,7 @@ commentList.addEventListener('click',commentLike)
 
 async function commentSave() {
   const comment = commentMainInput.value;
-  const thumbnail = 'https://i.ytimg.com/vi/ZO-zPJpQEb0/maxresdefault.jpg'
+  const thumbnail = `${videoThumbnail}`
   commentMainInput.value = "";
   const options = {
     method: "POST",
@@ -60,7 +60,7 @@ async function showComment() {
           </div>
         </div>
     `
-    commentList.insertAdjacentHTML('beforeend',`${temp_html}`)
+    commentList.insertAdjacentHTML('afterbegin',`${temp_html}`)
 
   }
 }

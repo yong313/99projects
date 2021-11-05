@@ -21,8 +21,10 @@ SECRET_KEY = '14조'
 @app.route('/home')
 def home():
     token_receive = request.cookies.get('mytoken')
+    print(token_receive)
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        print(payload['id'])
         user_info = db.userInfo.find_one({"email": payload['id']})
         return render_template('index.html', user_info=user_info)
     except jwt.ExpiredSignatureError:
@@ -75,7 +77,7 @@ def valid_checker():
     email = request.form['email_give']
     checking_email = db.userInfo.find_one({'email': email}, {'_id': False})
 
-    if(checking_email is not None):
+    if checking_email is not None:
         return jsonify({'msg': 'Not available'})
 
     return jsonify({'msg': 'available'})
@@ -171,12 +173,13 @@ def video_save():
     videoTitle = crawring_def.crawring_subject(videoUrl)
     embedUrl = crawring_def.crawring_embedUrl(videoUrl)
     videoThumbnail = crawring_def.crawring_thumbnailUrl(videoUrl)
-
+    youtuber = crawring_def.crawring_youtuber(videoUrl)
     doc = {
         'videoUrl' : videoUrl,
         'videoTitle' : videoTitle,
         'embedUrl' : embedUrl,
-        'videoThumbnail' : videoThumbnail
+        'videoThumbnail' : videoThumbnail,
+        'youtuber':youtuber
     }
 
     db.videos.insert_one(doc)
@@ -192,9 +195,11 @@ def video_load():
 
     videoTitle = videos[randomNumber]['videoTitle']
     embedUrl = videos[randomNumber]['embedUrl']
-    videoThumbnail = videos[randomNumber]['thumbnailUrl']
+    videoThumbnail = videos[randomNumber]['videoThumbnail']
+    videoUrl = videos[randomNumber]['videoUrl']
+    youtuber = videos[randomNumber]['youtuber']
 
-    return jsonify({'videoTitle': videoTitle, 'embedUrl': embedUrl, 'videoThumbnail': videoThumbnail})
+    return jsonify({'videoTitle': videoTitle, 'embedUrl': embedUrl, 'videoThumbnail': videoThumbnail, 'videoUrl':videoUrl, 'youtuber':youtuber})
 
 
 if __name__ == '__main__':

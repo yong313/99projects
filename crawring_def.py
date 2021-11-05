@@ -19,5 +19,10 @@ def crawring_subject(link):
     div_find = soup.find('div',id='watch7-content')
     subject = div_find.find('meta',itemprop='name')['content']
     return subject
-
+def crawring_youtuber(link):
+    youtube_url = requests.get(link)
+    soup = BeautifulSoup(youtube_url.text, 'html.parser')
+    div_find = soup.find('div',id='watch7-content')
+    youtuber = div_find.find('link',itemprop='name')['content']
+    return youtuber
 # def cra

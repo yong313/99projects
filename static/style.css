@@ -362,6 +362,10 @@
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column-reverse;
 }
 
 .comment_list::-webkit-scrollbar {
