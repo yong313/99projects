@@ -27,6 +27,7 @@ async function videoSave() {
   const result = await response.json();
   const msg = await result["msg"];
   console.log(msg);
+  alert('동영상 저장 완료!')
 }
 
 async function videoLoad() {
