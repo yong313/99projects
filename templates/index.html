@@ -16,9 +16,14 @@
   <link rel="stylesheet" href="/static/style.css">
   <!--java script-->
   <title>분노의 투기장 - ARENA of ANGER</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 </head>
 <body>
-  <!--헤더-->
+
+  <!--금동 매니저님께-->
+
+  <!--헤더 test-->
   <div class="header">
     <div class="logo"></div>
     <div class="logo_2"></div>
@@ -29,127 +34,79 @@
     <div class="twinkle" onclick="onoff()">
       <i class="far fa-moon"></i>
     </div>
-    <input type="submit" class="withdrawal" id="test" value="회원탈퇴">
-    <input type="submit" class="logout_button" value="로그아웃">
+    <input type="button" class="withdrawal" id="signout"   value="회원탈퇴">
+    <input type="button" class="logout_button" id="logout"   value="로그아웃">
   </div>
   <!--좌측 비디오 섹션-->
-  <div class="next_video" id="next_video">다음영상 👉</div>
-  <div class="left_box" id="left_box">
-    <!--랜덤 동영상-->
-
-  </div>
-  <div class="video_input_chat">
-
-    <div class="user_input_chat">
-      <div class="user_pic"></div>
-      <input type="text" name="" class="user_comment" id="comment_main_input" placeholder="공개 댓글 추가....">
+  <div class="section">
+    <div class="left_box" id="left_box">
+{#        <div class=“video_play”>#}
+{#          <iframe width=“100%” height=“100%” src="{{ embedUrl }}" title=“YouTube video player” frameborder=“0" allow=“accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture” allowfullscreen></iframe>#}
+{#        </div>#}
+{#        <div class=“video_information”>#}
+{#            <div class=“info_1”>#}
+{#              <p class=“rank_text”>:교차된_검: 분노의 투기장 - ARENA of ANGER :교차된_검:</p>#}
+{#              <p class=“name_text”>{{ videoTitle }}</p>#}
+{#              <p class=“views_text” data-url="{{ videoThumbnail }}">조회수 554,905회 2021. 10. 30.</p>#}
+{#            </div>#}
+{#            <div class=“info_2”>#}
+{#              <div class=“youtuber_pic”></div>#}
+{#              <div class=“youtuber_info”>#}
+{#                <p class=“youtuber_name_text”>{{ youtuber }}</p>#}
+{#                <p class=“subscriber_number”>구독자 127만명</p>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class=“info_3">#}
+{#              <div class=“like” >#}
+{#                <i class=“far fa-thumbs-up”  id=“like_color_change”></i>#}
+{#                <p class=“info_like_number” id=“like_color_change_2">#}
+{#                  230,4058#}
+{#                </p>#}
+{#              </div>#}
+{#              <div class=“dislike” >#}
+{#                <i class=“far fa-thumbs-down” id=“dislike_color_change”></i>#}
+{#                <p class=“info_like_number” id=“dislike_color_change_2">#}
+{#                  3058#}
+{#                </p>#}
+{#              </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
-    <input type="submit" class="user_comment_send" id="submit_comment" value="댓글">
-
+    <div class="left_two">
+      <!--유저 댓글 입력-->
+      <div class="video_input_chat">
+        <div class="user_input_chat" >
+          <div class="user_pic"></div>
+          <input type="text" name="" class="user_comment" id="comment_main_input" placeholder="공개 댓글 추가....">
+        </div>
+        <input type="submit" class="user_comment_send" id="submit_comment" value="댓글">
+        <div class="next_video" id="next_video">다음영상 👉</div>
+      </div>
+    </div>
   </div>
 
-  <!--우측 코멘트 섹션-->
-  <div class="right_box">
-    <div class="chat_output">
-      <div class="comment_list" id="comment_list">
+    <!--우측 코멘트 섹션-->
+  <div class="section_2">
+    <div class="right_box">
+      <!--유저가 입력한 댓글 모이는 곳-->
+      <div class="chat_output">
+        <div class="comment_list" id="comment_list">
         <!--유저가 작성한 댓글 폼-->
-<<<<<<< HEAD
-=======
-        <div class="list_1">
-          <a href="#" class="list_thumnail">
-            <img src="" alt="">
-          </a>
-          <div class="list_like">
-            <i class="far fa-thumbs-up"></i>
-            <p class="like_number">120</p>
-          </div>
-          <div class="list_user_info">
-            <div class="list_user_form">
-              <p class="list_user_name">은평구 꿀주먹</p>
-              <i class="far fa-edit"></i>
-              <i class="far fa-trash-alt"></i>
-            </div>
-            <p class="list_user_text">
-              수많은 게스트가 있었지만 최고는 역시 주펄이다.
-            </p>
-          </div>
-        </div>
->>>>>>> 99c75dbf11c38d9d8184c67f70b94e317c17ffed
-      </div>
 
-    </div>
-
-    <!--댓글 랭킹-->
-    <div class="chat_rank" id="chat_rank">
-      <div class="chat_rank_list">
-        <!--유저가 작성한 댓글 폼-->
-        <div class="list_1">
-          <a href="#" class="list_thumnail">
-            <img src="" alt="">
-          </a>
-          <div class="list_like">
-            <i class="far fa-thumbs-up" id="rank_gold"></i>
-            <p class="like_number" id="rank_gold">120</p>
-          </div>
-          <div class="list_user_info">
-            <div class="list_user_form">
-              <p class="list_user_name">은평구 꿀주먹</p>
-              <div class="rank_gold"></div>
-            </div>
-            <p class="list_user_text">
-              수많은 게스트가 있었지만 최고는 역시 주펄이다.
-            </p>
-          </div>
         </div>
       </div>
 
-      <div class="chat_rank_list">
-        <!--유저가 작성한 댓글 폼-->
-        <div class="list_1">
-          <a href="#" class="list_thumnail">
-            <img src="" alt="">
-          </a>
-          <div class="list_like">
-            <i class="far fa-thumbs-up" id="rank_silver"></i>
-            <p class="like_number" id="rank_silver">120</p>
-          </div>
-          <div class="list_user_info">
-            <div class="list_user_form">
-              <p class="list_user_name">은평구 꿀주먹</p>
-              <div class="rank_silver"></div>
-            </div>
-            <p class="list_user_text">
-              수많은 게스트가 있었지만 최고는 역시 주펄이다.
-            </p>
-          </div>
-        </div>
-      </div>
+      <!--댓글 랭킹-->
+      <div class="chat_rank" id="chat_rank">
 
-      <div class="chat_rank_list">
-        <!--유저가 작성한 댓글 폼-->
-        <div class="list_1">
-          <a href="#" class="list_thumnail">
-            <img src="" alt="">
-          </a>
-          <div class="list_like">
-            <i class="far fa-thumbs-up" id="rank_bronze"></i>
-            <p class="like_number" id="rank_bronze">120</p>
-          </div>
-          <div class="list_user_info">
-            <div class="list_user_form">
-              <p class="list_user_name">은평구 꿀주먹</p>
-              <div class="rank_bronze"></div>
-            </div>
-            <p class="list_user_text">
-              수많은 게스트가 있었지만 최고는 역시 주펄이다.
-            </p>
-          </div>
-        </div>
       </div>
-
     </div>
   </div>
   <script src="{{ url_for('static', filename='comment.js') }}"></script>
-  <script src="{{ url_for('static', filename='video.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='video.js') }}"></script>
+  <script src="{{ url_for('static', filename='ranking.js') }}"></script>
+  <script src="{{ url_for('static', filename='logout_signout.js') }}"></script>
+
+
 </body>
 </html>

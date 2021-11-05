@@ -9,7 +9,7 @@
   box-shadow: 0px 3px 20px #f0f0f0;
   background-color: #ffffff;
 }
-
+/**금동 매니저님께22**/
 .logo{
     width: 24.5%;
     height: 32.5px;
@@ -17,7 +17,6 @@
     background-repeat: no-repeat;
     margin-left: 5.5%;
 }
-
 .logo_2{
   width: 24.5%;
   height: 32.5px;
@@ -26,7 +25,6 @@
   margin-left: 5.5%;
   display: none;
 }
-
 .user_link{
   width: 50%;
   height: 50px;
@@ -34,7 +32,6 @@
   justify-content: flex-end;
   align-items: center;
 }
-
 .user_link_text{
   width: 40%;
   height: 40px;
@@ -44,24 +41,20 @@
   padding-left: 15px;
   background-color: #f0f0f0;
 }
-
 .user_link_text:hover{
   color: transparent;
   background-color: #b3dbff;
   transition: 0.35s;
 }
-
 .user_link_text:focus{
   outline: none;
   color: #ffffff;
   background-color: #3ea6ff;
   transition: 0.85s;
 }
-
 .user_link_text:focus::placeholder{
   color: transparent;
 }
-
 .user_link_button{
   width: 100px;
   height: 40px;
@@ -72,19 +65,16 @@
   color: #5a5a5a;
   font-size: 0.8rem;
 }
-
 .user_link_button:hover{
   color: #ffffff;
   background-color: #3ea6ff;
   transition: 0.3s;
 }
-
 .user_link_button:focus{
   color: #ffffff;
   background-color: #3ea6ff;
   transition: 0.3s;
 }
-
 .twinkle{
   width: 40px;
   height: 40px;
@@ -96,13 +86,11 @@
   justify-content: center;
   color: #5a5a5a;
 }
-
 .twinkle:hover{
   background-color: #5a5a5a;
   transition: 0.35s;
   color: #ffffff;
 }
-
 .logout_button, .withdrawal{
   width: 100px;
   height: 40px;
@@ -112,17 +100,14 @@
   color: #5a5a5a;
   font-size: 0.8rem;
 }
-
 .logout_button{
   margin: 0 5% 0 10px ;
 }
-
 .logout_button:focus, .withdrawal:focus{
   color: #ffffff;
   background-color: #979797;
   transition: 0.3s;
 }
-
 .logout_button:hover, .withdrawal:hover{
   color: #ffffff;
   background-color: #979797;
@@ -131,9 +116,7 @@
 .withdrawal:focus, .withdrawal:hover{
   background-color: #fa4e4e;
 }
-
-/**좌측 비디오 섹션**/
-.left_box{
+.section{
   width: 55%;
   height: 92%;
   display: flex;
@@ -141,49 +124,50 @@
   align-items: center;
   flex-direction: column;
   float: left;
-
+}
+/**좌측 비디오 섹션**/
+.left_box{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  float: left;
+  padding-top: 30px;
   animation: fadein 2.25s;
   -moz-animation: fadein 2.25s;
   -webkit-animation: fadein 2.25s;
   -o-animation: fadein 2.25s;
 }
-
-.next_video {
-  width: 110px;
-  height: 40px;
-  margin-left: 37.5vw;
-  margin-bottom: 12px;
-  border-radius: 15px;
+.left_two{
+  width: 100%;
+  height: 20%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background-color: #f0f0f0;
-  color: #5a5a5a;
-  font-size: 0.8rem;
+  flex-direction: column;
+  float: left;
+  animation: fadein 2.25s;
+  -moz-animation: fadein 2.25s;
+  -webkit-animation: fadein 2.25s;
+  -o-animation: fadein 2.25s;
 }
-
-.next_video:hover{
-  color: #ffffff;
-  background-color: #3ea6ff;
-  transition: 0.35s;
-}
-
 .video_play{
   width: 80%;
-  height: 50%;
-  background-color:gree;
+  height: 65%;
+  margin-top: 20px;
+  background-color: #efefef;
   box-shadow: 0px 13px 20px #f0f0f0;
 }
-
 .video_information{
   width: 80%;
   height: auto;
-  margin: 1.6rem 0 1.9rem 0;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .info_1, .info_2, .info_3{
   width: 16%;
   height: 100%;
@@ -193,31 +177,28 @@
   flex-direction: row;
 }
 .info_1{
-  width: 52%;
+  width: 54%;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .info_2{
-  width: 27%;
-  margin: 0 15px;
+  width: 25%;
+  margin: 0 20px;
 }
-
 .rank_text{
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #3ea6ff;
   font-weight: 400;
 }
 .name_text{
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 500;
-  margin: 0.45rem 0 0.7rem 0;
+  margin: 0.5rem 0 0.8rem 0;
 }
 .views_text{
   font-size: 0.85rem;
   color: #aaaaaa;
 }
-
 .youtuber_pic{
   width: 48px;
   height: 48px;
@@ -225,67 +206,55 @@
   margin-right: 10px;
   background-color: green;
 }
-
 .youtuber_name_text{
   font-size: 1.2rem;
   padding-top: 0.2rem;
   letter-spacing: 1px;
 }
-
 .subscriber_number{
   font-size: 0.8rem;
-  margin-top: 8px;
+  margin-top: 5px;
   color: #aaaaaa;
 }
-
 .like, .dislike{
-  width: 70px;
+  width: 80px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 0 0.35px;
-  font-size: 1.65rem;
+  margin: 0 5px;
+  font-size: 1.8rem;
   color: #cccccc;
 }
-
 .info_like_number{
   margin-top: 8px;
   font-size: 0.5rem;
 }
-
 .fa-thumbs-down{
   transform: scaleX(-1);
 }
-
 .info_like_number{
   transform: none;
 }
-
 .like:hover{
   transition: 0.35s;
   color: #b3dbff;
 }
-
 .dislike:hover{
   transition: 0.35s;
   color: #eea8a8;
 }
-
 .video_input_chat{
   width: 80%;
-  height: auto;
-  margin-bottom: 1rem;
+  height: 12%;
 }
-
 .user_input_chat{
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-
 .user_pic{
   width: 38px;
   height: 38px;
@@ -293,24 +262,38 @@
   border-radius: 100%;
   background-color: rosybrown;
 }
-
 .user_comment{
   width: 94%;
   height: 35px;
   border: none;
   border-bottom: 1px solid #cccccc;
 }
-
 .user_comment:focus{
   outline: none;
-  border-bottom: 1.2px solid #3ea6ff;
+  border-bottom: 1.5px solid #3ea6ff;
 }
-
 .user_comment:hover{
-  border-bottom: 1.2px solid #3ea6ff;
+  border-bottom: 1.5px solid #3ea6ff;
   transition: 0.6s;
 }
-
+.next_video {
+  width: 110px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #5a5a5a;
+  font-size: 0.8rem;
+  float: right;
+  margin: 15px 25px 0 0;
+  border-radius: 15px;
+}
+.next_video:hover{
+  color: #ffffff;
+  background-color: #3ea6ff;
+  transition: 0.35s;
+}
 .user_comment_send{
   width: 90px;
   height: 40px;
@@ -318,20 +301,17 @@
   margin-top: 15px;
   border: none;
   float: right;
+  border-radius: 15px;
 }
-
 .user_comment_send:focus{
   outline: none;
 }
-
 .user_comment_send:hover{
   background-color: #3ea6ff;
   color: #ffffff;
   transition: 0.4s;
 }
-
-/**우측 댓글 섹션**/
-.right_box{
+.section_2{
   width: 45%;
   height: 92%;
   display: flex;
@@ -339,44 +319,40 @@
   align-items: center;
   flex-direction: column;
   float: right;
-
+}
+/**우측 댓글 섹션**/
+.right_box{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  float: right;
   animation: fadein 2.25s;
   -moz-animation: fadein 2.25s;
   -webkit-animation: fadein 2.25s;
   -o-animation: fadein 2.25s;
 }
-
 .chat_output{
   width: 80%;
   height: 55%;
   box-shadow: 0px 8px 20px #f0f0f0;
 }
-
 .chat_output:hover{
   box-shadow: 0px 5px 8px #cccccc;
   transition: 0.5s;
 }
-
 .comment_list {
   margin: 0 auto;
   width: 94%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  display: flex;
-<<<<<<< HEAD
-  justify-items: center;
-=======
-  justify-content: flex-start;
->>>>>>> 99c75dbf11c38d9d8184c67f70b94e317c17ffed
-  align-items: center;
-  flex-direction: column-reverse;
 }
-
 .comment_list::-webkit-scrollbar {
   display: none;
 }
-
 .list_1{
   width: 100%;
   height: auto;
@@ -389,14 +365,12 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid #f0f0f0;
 }
-
 .list_thumnail{
   min-width: 80px;
   height: 45px;
   margin: 8px 0;
   background-color:cadetblue;
 }
-
 .list_like{
   min-width: 45px;
   height: 45px;
@@ -408,12 +382,10 @@
   color: #cccccc;
   margin: 0 15px;
 }
-
 .like_number{
   margin-top: 7px;
   font-size: 0.7rem;
 }
-
 .list_user_form{
   display: flex;
   justify-content: flex-start;
@@ -421,7 +393,6 @@
   flex-direction: row;
   margin-bottom: 10px;
 }
-
 .list_user_name{
   width: auto;
   height: 20px;
@@ -430,23 +401,19 @@
   font-weight: 500;
   line-height: 20px;
 }
-
 .fa-edit, .fa-trash-alt{
   font-size: 0.9rem;
   font-weight: 400;
   color: #cccccc;
 }
-
 .fa-edit{
   margin-right: 15px;
 }
-
 .fa-edit:hover, .fa-trash-alt:hover{
   color: #5a5a5a;
   font-weight: bold;
   transition: 0.35s;
 }
-
 .list_user_text{
   width: 100%;
   height: auto;
@@ -456,7 +423,6 @@
   letter-spacing: 0.5px;
   line-height: 1.1rem;
 }
-
 .chat_rank{
   width: 80%;
   height: 25%;
@@ -465,22 +431,18 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
 .chat_rank::-webkit-scrollbar {
   display: none;
 }
-
 .chat_rank:hover{
   box-shadow: 0px 5px 8px #cccccc;
   transition: 0.55s;
 }
-
 .chat_rank_list{
   margin: 0 auto;
   width: 94%;
   height: auto;
 }
-
 .rank_gold, .rank_silver, .rank_bronze{
   width: 35px;
   height: 35px;
@@ -488,20 +450,15 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-
 .rank_silver{
   background-image: url(/commend/number_2.png);
 }
-
 .rank_bronze{
   background-image: url(/commend/number_3.png);
 }
-
 #rank_gold, #rank_silver, #rank_bronze{
   color: #3ea6ff;
 }
-
-
 @keyframes fadein {
   from {
       opacity:0;

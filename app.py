@@ -10,6 +10,9 @@ import datetime
 
 import crawring_def
 
+import collections
+
+from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 
@@ -21,10 +24,8 @@ SECRET_KEY = '14조'
 @app.route('/home')
 def home():
     token_receive = request.cookies.get('mytoken')
-    print(token_receive)
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload['id'])
         user_info = db.userInfo.find_one({"email": payload['id']})
         return render_template('index.html', user_info=user_info)
     except jwt.ExpiredSignatureError:
@@ -200,6 +201,30 @@ def video_load():
     youtuber = videos[randomNumber]['youtuber']
 
     return jsonify({'videoTitle': videoTitle, 'embedUrl': embedUrl, 'videoThumbnail': videoThumbnail, 'videoUrl':videoUrl, 'youtuber':youtuber})
+
+
+#댓글 랭킹 api
+@app.route('/api/comment_ranking', methods=['GET'])
+def comment_ranking():
+    if request.method == 'GET':
+        comments = db.commentLike.find({},{'_id':False,'user_id':False})
+        count = []
+        for comment in comments:
+            count.append(comment['comment_id'])
+        rankings = collections.Counter(count).most_common(3)
+        comment_rank1_id = rankings[0][0]
+        comment_rank2_id = rankings[1][0]
+        comment_rank3_id = rankings[2][0]
+        comment_rank1 = db.comments.find_one({'_id':ObjectId(comment_rank1_id)})
+        comment_rank2 = db.comments.find_one({'_id':ObjectId(comment_rank2_id)})
+        comment_rank3 = db.comments.find_one({'_id':ObjectId(comment_rank3_id)})
+        rankers = []
+        rankers.append(comment_rank1)
+        rankers.append(comment_rank2)
+        rankers.append(comment_rank3)
+        res = list(map(lambda item: {'_id': str(item["_id"]), 'content': item['content'], 'user_name': item['user_name'], 'thumbnail': item['thumbnail'], 'like_num': db.commentLike.count_documents({'comment_id': str(item["_id"])})}, rankers))
+        return jsonify({'rankers': res})
+
 
 
 if __name__ == '__main__':

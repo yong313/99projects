@@ -5,9 +5,11 @@ nextVideo.addEventListener('click', videoLoad)
 urlBtn.addEventListener('click', videoSave)
 let videoThumbnail;
 
-console.log('hi')
 
-window.addEventListener('DOMContentLoaded', (event) => {
+// const firstVideoThumbnail = document.querySelector('#first_thumbnail')
+// console.log(firstVideoThumbnail)
+
+window.addEventListener('load', (event) => {
   videoLoad()
 
 })
@@ -42,26 +44,37 @@ async function videoLoad() {
   const videoUrl = result['videoUrl']
   const youtuber = result['youtuber']
     const temp_html= `
-    <div class="video_play">
-      <iframe width="100%" height="100%" src="${embedUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <!--동영상정보-->
-    <div class="video_information">
-      <!--동영상정보: 실시간 순위 / 동영상 제목 / 좋아요&싫어요-->
-      <div class="info_1">
-        <p class="rank_text">⚔️ 분노의 투기장 - ARENA of ANGER ⚔️</p>
-        <p class="name_text">${videoTitle}</p>
+    <div class=“video_play”>
+        <iframe width=“100%” height=“100%” src="${embedUrl}" title=“YouTube video player” frameborder=“0" allow=“accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture” allowfullscreen></iframe>
       </div>
-      <!--유투버사진 / 유투버이름 / 구독자 숫자-->
-      <div class="info_2">
-        <div class="youtuber_pic"></div>
-        <div class="youtuber_info">
-          <p class="youtuber_name_text">${youtuber}</p>
+      <div class=“video_information”>
+        <div class=“info_1”>
+          <p class=“rank_text”>:교차된_검: 분노의 투기장 - ARENA of ANGER :교차된_검:</p>
+          <p class=“name_text”>${videoTitle}</p>
+          <p class=“views_text”>조회수 554,905회 2021. 10. 30.</p>
+        </div>
+        <div class=“info_2”>
+          <div class=“youtuber_pic”></div>
+          <div class=“youtuber_info”>
+            <p class=“youtuber_name_text”>${youtuber}</p>
+            <p class=“subscriber_number”>구독자 127만명</p>
+          </div>
+        </div>
+        <div class=“info_3">
+          <div class=“like” >
+            <i class=“far fa-thumbs-up”  id=“like_color_change”></i>
+            <p class=“info_like_number” id=“like_color_change_2">
+              230,4058
+            </p>
+          </div>
+          <div class=“dislike” >
+            <i class=“far fa-thumbs-down” id=“dislike_color_change”></i>
+            <p class=“info_like_number” id=“dislike_color_change_2">
+              3058
+            </p>
+          </div>
         </div>
       </div>
-    <!--좋아요&싫어요-->
-    </div>
-    
     `
     leftBox.innerHTML=`${temp_html}`
 
@@ -69,4 +82,3 @@ async function videoLoad() {
 
 }
 
-console.log(videoThumbnail)

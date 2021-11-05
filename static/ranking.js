@@ -1,43 +1,48 @@
-const chatRank = document.querySelector('#check_rank')
+const chatRank = document.querySelector('#chat_rank')
+
+chatRank.addEventListener('click',commentLike)
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  showComment()
+  showRanking()
 
 })
 
-async function showComment() {
+async function showRanking() {
   const options = {
     method: "get",
   };
-  const response = await fetch("/api/comment_read", options);
+  const response = await fetch("/api/comment_ranking", options);
   const result = await response.json();
-  const comments = result["all_comments"];
-  for (let i = 0; i < comments.length; i++) {
-    let comment = comments[i]["content"];
-    let commentId = comments[i]["_id"];
-    let userName = comments[i]["user_name"];
-    let thumbnail = comments[i]["thumbnail"]
-    let likeNum = comments[i]["like_num"]
-    let temp_html= `
+  const rankers = result["rankers"];
+  for (let i = 0; i < rankers.length; i++) {
+      let comment = rankers[i]["content"];
+      let commentId = rankers[i]["_id"];
+      let userName = rankers[i]["user_name"];
+      let thumbnail = rankers[i]["thumbnail"]
+      let likeNum = rankers[i]["like_num"]
+      const temp_html = `
         <div class="list_1" data-no="${commentId}">
           <a href="#" class="list_thumnail">
             <img src="${thumbnail}" alt="" style="width: 80px;height: 45px;">
           </a>
           <div class="list_like">
-            <i class="far fa-thumbs-up likeBtn"></i>
-            <p class="like_number">${likeNum}</p>
+            <i class="far fa-thumbs-up likeBtn" id="rank_gold" ></i>
+            <p class="like_number" id="rank_gold">${likeNum}</p>
           </div>
           <div class="list_user_info">
-            <p class="list_user_name">
-              ${userName}
-            </p>
+            <div class="list_user_form">
+              <p class="list_user_name">${userName}</p>
+              <div class="rank_gold"></div>
+            </div>
             <p class="list_user_text">
-            ${comment}
+              ${comment}
             </p>
           </div>
         </div>
+      </div>
+      
     `
-    commentList.insertAdjacentHTML('afterbegin',`${temp_html}`)
+      chatRank.insertAdjacentHTML('beforeend', `${temp_html}`)
 
   }
 }

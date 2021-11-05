@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--favicon-->
+  <link rel="shortcut icon" type="image/x-icon" href="/commend/favicon.ico">
+  <!--fontawesome-->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <!--java script-->
+  <script src="/static/index.js"></script>
+  <!--reset.css-->
+  <link rel="stylesheet" href="/static/reset.css">
+  <!--style.css-->
+  <link rel="stylesheet" href="/static/style.css">
+  <!--java script-->
+  <title>분노의 투기장 - ARENA of ANGER</title>
+</head>
+<body>
+  <!--헤더-->
+  <div class="header">
+    <div class="logo"></div>
+    <div class="logo_2"></div>
+    <div class="user_link">
+      <input type="text" name="" class="user_link_text" id="url-input" placeholder="🔥 보고싶은 유투브 링크를 추가해주세요 🔥">
+      <input type="submit" class="user_link_button" id="url-button" value="전송하기">
+    </div>
+    <div class="twinkle" onclick="onoff()">
+      <i class="far fa-moon"></i>
+    </div>
+    <input type="submit" class="withdrawal" id="test" value="회원탈퇴">
+    <input type="submit" class="logout_button" value="로그아웃">
+  </div>
+  <!--좌측 비디오 섹션-->
+  <div class="next_video" id="next_video">다음영상 👉</div>
+  <div class="left_box" id="left_box">
+    <!--랜덤 동영상-->
+
+  </div>
+  <div class="video_input_chat">
+
+    <div class="user_input_chat">
+      <div class="user_pic"></div>
+      <input type="text" name="" class="user_comment" id="comment_main_input" placeholder="공개 댓글 추가....">
+    </div>
+    <input type="submit" class="user_comment_send" id="submit_comment" value="댓글">
+
+  </div>
+
+  <!--우측 코멘트 섹션-->
+  <div class="right_box">
+    <div class="chat_output">
+      <div class="comment_list" id="comment_list">
+        <!--유저가 작성한 댓글 폼-->
+
+      </div>
+
+    </div>
+
+    <!--댓글 랭킹-->
+    <div class="chat_rank" id="chat_rank">
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='comment.js') }}"></script>
+  <script src="{{ url_for('static', filename='video.js') }}"></script>
+  <script src="{{ url_for('static', filename='ranking.js') }}"></script>
+</body>
+</html>

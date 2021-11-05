@@ -1,7 +1,7 @@
 const commentMainInput = document.querySelector('#comment_main_input')
 const commentMainButton = document.querySelector('#submit_comment')
 const commentList = document.querySelector('#comment_list')
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('load', (event) => {
   showComment()
 
 })
