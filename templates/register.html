@@ -9,51 +9,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script type="text/javascript">
-
-        function email_valid_checker() {
-
-            const email = $('#email-id').val();
-
-            console.log(email)
-
-            $.ajax({
-                type: 'POST',
-                url: '/api/account/check_up',
-                data:{email_give : email},
-                success: function (response) {
-                    console.log('123123')
-                    if(response['msg']=='Not available'){
-                        alert('이미 사용중입니다.')
-                    } else {
-                        alert('사용 가능합니다.')
-                    }
-                }
-            })
-        }
-
-
-        function user_register() {
-            let email = $('#email-id').val();
-            let pw = $('#password').val();
-            let name = $('#name').val();
-
-            $.ajax({
-                type: "POST",
-                url : "/api/account",
-                data: {
-                    email_give : email,
-                    pw_give : pw,
-                    name_give : name
-                },
-                success: function (response) {
-                    if(response['msg']=='success') {
-                        alert('회원가입 완료!')
-                        location.replace('/')
-                    }
-                }
-            })
-        }
+    <script type="text/javascript" src="/static/register.js">
     </script>
 
 </head>
@@ -64,23 +20,27 @@
       <p class="mb-0">비밀번호는 안전하게 저장되니 걱정하지 마세요!</p>
     </div>
 
-    <form>
-      <div class="form-group">
+
+    <div class="form-group">
         <label for="exampleInputEmail1">이메일 주소</label>
-        <button class="button is-primary" onclick="email_valid_checker()">중복검사</button>
-        <input type="email" class="form-control" id="email-id" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="유효한 이메일을 입력해주세요.">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="password" id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요.">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">닉네임</label>
-        <input type="text" class="form-control" id="name" id="exampleInputPassword2" placeholder="닉네임을 입력해주세요">
-      </div>
-      <button class="button is-primary" onclick="user_register()">회원가입</button>
-    </form>
+            <button class="button is-primary" onclick="email_valid_checker()">중복검사</button>
+            <input type="email" class="form-control" id="email-id" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="유효한 이메일을 입력해주세요.">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요.">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password_check" id="exampleInputPassword1" placeholder="비밀번호를 다시 입력해주세요.">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">닉네임</label>
+            <input type="text" class="form-control" id="name" id="exampleInputPassword2" placeholder="닉네임을 입력해주세요">
+        </div>
+    <button class="button is-primary" onclick="user_register()">회원가입</button>
+
 
 </body>
 </html>
