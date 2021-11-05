@@ -8,7 +8,7 @@ import datetime
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
-db = client.dbhanghae1
+db = client.login_prac
 SECRET_KEY = '14조'
 
 
