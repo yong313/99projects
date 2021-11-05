@@ -47,7 +47,7 @@ async function videoLoad() {
       </div>
       <div class="video_information">
         <div class="info_1">
-          <p class="rank_text">:교차된_검: 분노의 투기장 - ARENA of ANGER :교차된_검:</p>
+          <p class="rank_text">⚔️ 분노의 투기장 - ARENA of ANGER ⚔️</p>
           <p class="name_text">${videoTitle}</p>
           <p class="views_text">조회수 554,905회 2021. 10. 30.</p>
         </div>
