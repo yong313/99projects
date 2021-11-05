@@ -197,7 +197,7 @@
   font-weight: 400;
 }
 .name_text {
-  font-size: 1.7rem;
+  font-size: 1.55rem;
   font-weight: 500;
   margin: 0.5rem 0 0.8rem 0;
 }
@@ -213,9 +213,9 @@
   background-color: green;
 }
 .youtuber_name_text {
-  font-size: 1.2rem;
-  padding-top: 0.2rem;
-  letter-spacing: 1px;
+  font-size: 1.15rem;
+  margin-bottom:8px;
+  font-weight: 600;
 }
 .subscriber_number {
   font-size: 0.8rem;
