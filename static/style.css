@@ -301,6 +301,13 @@
   background-color: #3ea6ff;
   transition: 0.35s;
 }
+.likeBtn_color {
+  color: #3ea6ff;
+}
+.unlikeBtn_color {
+  color: #cccccc;
+}
+
 .user_comment_send {
   width: 90px;
   height: 40px;
