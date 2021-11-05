@@ -1,8 +1,8 @@
 body {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,21 +10,21 @@ body {
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.background{
+.background {
   width: 27%;
   height: 55%;
-  background-color:rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,22 +33,22 @@ body {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-#login_contain{
+#login_contain {
   width: 100%;
   opacity: 100%;
   z-index: 99;
 }
 
-.title{
+.title {
   width: auto;
   height: 55px;
-  background: url(/commend/99pro_logo_w.svg);
+  background: url(/static/commend/99pro_logo_w.svg);
   background-repeat: no-repeat;
   background-position: center;
   margin: 50px 0;
 }
 
-.field{
+.field {
   width: 100%;
   height: auto;
   display: flex;
@@ -58,7 +58,7 @@ body {
   margin: 8px 0;
 }
 
-#input_id{
+#input_id {
   width: 220px;
   height: 35px;
   background-color: rgba(0, 0, 0, 0);
@@ -68,14 +68,13 @@ body {
   text-align: center;
 }
 
-#input_id:focus{
+#input_id:focus {
   outline: none;
   border-bottom: 1px solid #000000;
   transition: 0.35s;
 }
 
-#input_id::placeholder{
+#input_id::placeholder {
   color: #ffffff;
   text-align: center;
 }
-

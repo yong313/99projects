@@ -1,112 +1,104 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--favicon-->
-  <link rel="shortcut icon" type="image/x-icon" href="/commend/favicon.ico">
-  <!--fontawesome-->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  <!--java script-->
-  <script src="/static/index.js"></script>
-  <!--reset.css-->
-  <link rel="stylesheet" href="/static/reset.css">
-  <!--style.css-->
-  <link rel="stylesheet" href="/static/style.css">
-  <!--java script-->
-  <title>분노의 투기장 - ARENA of ANGER</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--favicon-->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/static/commend/favicon.ico"
+    />
+    <!--fontawesome-->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <!--java script-->
+    <!--reset.css-->
+    <link rel="stylesheet" href="/static/reset.css" />
+    <!--style.css-->
+    <link rel="stylesheet" href="/static/style.css" />
+    <!--java script-->
+    <title>분노의 투기장 - ARENA of ANGER</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-</head>
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  </head>
+  <body>
+    <!--금동 매니저님께-->
 
-  <!--금동 매니저님께-->
-
-  <!--헤더 test-->
-  <div class="header">
-    <div class="logo"></div>
-    <div class="logo_2"></div>
-    <div class="user_link">
-      <input type="text" name="" class="user_link_text" id="url-input" placeholder="🔥 보고싶은 유투브 링크를 추가해주세요 🔥">
-      <input type="submit" class="user_link_button" id="url-button" value="전송하기">
+    <!--헤더 test-->
+    <div class="header">
+      <div class="logo"></div>
+      <div class="logo_2"></div>
+      <div class="user_link">
+        <input
+          type="text"
+          name=""
+          class="user_link_text"
+          id="url-input"
+          placeholder="🔥 보고싶은 유투브 링크를 추가해주세요 🔥"
+        />
+        <input
+          type="submit"
+          class="user_link_button"
+          id="url-button"
+          value="전송하기"
+        />
+      </div>
+      <div class="twinkle" id="twinkle">
+        <i class="far fa-moon uuu"></i>
+      </div>
+      <input type="button" class="withdrawal" id="signout" value="회원탈퇴" />
+      <input type="button" class="logout_button" id="logout" value="로그아웃" />
     </div>
-    <div class="twinkle" onclick="onoff()">
-      <i class="far fa-moon"></i>
-    </div>
-    <input type="button" class="withdrawal" id="signout"   value="회원탈퇴">
-    <input type="button" class="logout_button" id="logout"   value="로그아웃">
-  </div>
-  <!--좌측 비디오 섹션-->
-  <div class="section">
-    <div class="left_box" id="left_box">
-{#        <div class=“video_play”>#}
-{#          <iframe width=“100%” height=“100%” src="{{ embedUrl }}" title=“YouTube video player” frameborder=“0" allow=“accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture” allowfullscreen></iframe>#}
-{#        </div>#}
-{#        <div class=“video_information”>#}
-{#            <div class=“info_1”>#}
-{#              <p class=“rank_text”>:교차된_검: 분노의 투기장 - ARENA of ANGER :교차된_검:</p>#}
-{#              <p class=“name_text”>{{ videoTitle }}</p>#}
-{#              <p class=“views_text” data-url="{{ videoThumbnail }}">조회수 554,905회 2021. 10. 30.</p>#}
-{#            </div>#}
-{#            <div class=“info_2”>#}
-{#              <div class=“youtuber_pic”></div>#}
-{#              <div class=“youtuber_info”>#}
-{#                <p class=“youtuber_name_text”>{{ youtuber }}</p>#}
-{#                <p class=“subscriber_number”>구독자 127만명</p>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class=“info_3">#}
-{#              <div class=“like” >#}
-{#                <i class=“far fa-thumbs-up”  id=“like_color_change”></i>#}
-{#                <p class=“info_like_number” id=“like_color_change_2">#}
-{#                  230,4058#}
-{#                </p>#}
-{#              </div>#}
-{#              <div class=“dislike” >#}
-{#                <i class=“far fa-thumbs-down” id=“dislike_color_change”></i>#}
-{#                <p class=“info_like_number” id=“dislike_color_change_2">#}
-{#                  3058#}
-{#                </p>#}
-{#              </div>#}
-{#            </div>#}
-{#        </div>#}
-    </div>
-    <div class="left_two">
-      <!--유저 댓글 입력-->
-      <div class="video_input_chat">
-        <div class="user_input_chat" >
-          <div class="user_pic"></div>
-          <input type="text" name="" class="user_comment" id="comment_main_input" placeholder="공개 댓글 추가....">
+    <!--좌측 비디오 섹션-->
+    <div class="section">
+      <div class="left_box" id="left_box"></div>
+      <div class="left_two">
+        <!--유저 댓글 입력-->
+        <div class="video_input_chat">
+          <div class="user_input_chat">
+            <div class="user_pic"></div>
+            <input
+              type="text"
+              name=""
+              class="user_comment"
+              id="comment_main_input"
+              placeholder="공개 댓글 추가...."
+            />
+          </div>
+          <input
+            type="submit"
+            class="user_comment_send"
+            id="submit_comment"
+            value="댓글"
+          />
+          <div class="next_video" id="next_video">다음영상 👉</div>
         </div>
-        <input type="submit" class="user_comment_send" id="submit_comment" value="댓글">
-        <div class="next_video" id="next_video">다음영상 👉</div>
       </div>
     </div>
-  </div>
 
     <!--우측 코멘트 섹션-->
-  <div class="section_2">
-    <div class="right_box">
-      <!--유저가 입력한 댓글 모이는 곳-->
-      <div class="chat_output">
-        <div class="comment_list" id="comment_list">
-        <!--유저가 작성한 댓글 폼-->
-
+    <div class="section_2">
+      <div class="right_box">
+        <!--유저가 입력한 댓글 모이는 곳-->
+        <div class="chat_output">
+          <div class="comment_list" id="comment_list">
+            <!--유저가 작성한 댓글 폼-->
+          </div>
         </div>
-      </div>
 
-      <!--댓글 랭킹-->
-      <div class="chat_rank" id="chat_rank">
-
+        <!--댓글 랭킹-->
+        <div class="chat_rank" id="chat_rank"></div>
       </div>
     </div>
-  </div>
-  <script src="{{ url_for('static', filename='comment.js') }}"></script>
-  <script defer src="{{ url_for('static', filename='video.js') }}"></script>
-  <script src="{{ url_for('static', filename='ranking.js') }}"></script>
-  <script src="{{ url_for('static', filename='logout_signout.js') }}"></script>
-
-
-</body>
+    <script src="{{ url_for('static', filename='comment.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='video.js') }}"></script>
+    <script src="{{ url_for('static', filename='ranking.js') }}"></script>
+    <script src="{{ url_for('static', filename='logout_signout.js') }}"></script>
+  </body>
 </html>
