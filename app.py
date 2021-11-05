@@ -131,8 +131,18 @@ def comment_save():
 def comment_read():
     if request.method == 'GET':
         comments = list(db.comments.find({}))
-        res = list(map(lambda item: {'_id': str(item["_id"]),'content':item['content'],'user_name':item['user_name'],'thumbnail':item['thumbnail'],'like_num':db.commentLike.count_documents({'comment_id':str(item["_id"])})}, comments))
-        return jsonify({'all_comments': res})
+        token_receive = request.cookies.get('mytoken')
+        try:
+            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            user_info = db.userInfo.find_one({"email": payload['id']})
+            user_id = user_info['email']
+            res = list(map(lambda item: {'_id': str(item["_id"]),'content':item['content'],'user_name':item['user_name'],'thumbnail':item['thumbnail'],'like_num':db.commentLike.count_documents({'comment_id':str(item["_id"])}), 'color':'likeBtn_color' if db.commentLike.find_one({'comment_id':str(item["_id"]),'user_id':user_id}) else 'unlikeBtn_color'}, comments))
+            return jsonify({'all_comments': res})   
+        except jwt.ExpiredSignatureError:
+            return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+        except jwt.exceptions.DecodeError:
+            return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        
 
 
 #댓글 좋아요
@@ -153,11 +163,11 @@ def comment_like():
                 }
                 db.commentLike.insert_one(doc)
                 like_num = db.commentLike.count_documents({'comment_id':comment_id})
-                return jsonify({'like_num': like_num})
+                return jsonify({'like_num': like_num, 'color': 'blue'})
             else:
                 db.commentLike.delete_one({'comment_id':comment_id,'user_id':user_id})
                 like_num = db.commentLike.count_documents({'comment_id':comment_id})
-                return jsonify({'like_num': like_num})
+                return jsonify({'like_num': like_num, 'color':'grey'})
         except jwt.ExpiredSignatureError:
             return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
         except jwt.exceptions.DecodeError:
