@@ -20,7 +20,6 @@ function onoff() {
   const placeholderStyle = sheet.rules[sheet.insertRule("::placeholder {}")].style;
   placeholderStyle.color = "#ffffff";
 
-
   document.getElementsByClassName('header')[0].style.backgroundColor = '#171717'
   document.getElementsByClassName('header')[0].style.borderBottom = '1px solid #ffffff'
   document.getElementsByClassName('header')[0].style.transition = 'all 0.3s'
@@ -38,21 +37,26 @@ function onoff() {
   document.getElementsByClassName('youtuber_name_text')[0].style.color = '#ffffff'
   document.getElementsByClassName('user_comment')[0].style.backgroundColor = '#171717'
   document.getElementsByClassName('user_comment')[0].style.transition = 'all 0.3s'
+  document.getElementsByClassName('user_comment')[0].style.color = '#ffffff'
 
   document.getElementsByClassName('left_box')[0].style.backgroundColor = '#171717'
   document.getElementsByClassName('left_box')[0].style.transition = 'all 0.3s'
 
   document.getElementsByClassName('right_box')[0].style.backgroundColor = '#171717'
   document.getElementsByClassName('right_box')[0].style.transition = 'all 0.3s'
-  
+
+
   document.getElementsByClassName('video_play')[0].style.boxShadow = '0px 8px 12px #333333'
   document.getElementsByClassName('chat_output')[0].style.boxShadow = '0px 5px 12px #333333'
   document.getElementsByClassName('chat_rank')[0].style.boxShadow = '0px 5px 12px #333333'
 
-  document.getElementsByClassName('list_user_info')[0].style.color = '#ffffff'
-  document.getElementsByClassName('list_user_info')[1].style.color = '#ffffff'
-  document.getElementsByClassName('list_user_info')[2].style.color = '#ffffff'
-  document.getElementsByClassName('list_user_info')[3].style.color = '#ffffff'
+  document.getElementsByClassName('chat_rank')[0].style.color = '#ffffff'
+  document.getElementsByClassName('chat_output')[0].style.color = '#ffffff'
+  
+ document.getElementsByClassName('logo')[0].style.display = 'none'
+ document.getElementsByClassName('logo_2')[0].style.display = 'block'
+ document.getElementsByClassName('logo_2')[1].style.transition = '0.3s'
+
 }
 
 
