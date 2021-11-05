@@ -1,3 +1,6 @@
+import math
+import random
+
 import jwt,hashlib
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 
@@ -5,12 +8,15 @@ app = Flask(__name__)
 
 import datetime
 
+import crawring_def
+
+
 from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 db = client.login_prac
-SECRET_KEY = '14조'
 
+SECRET_KEY = '14조'
 
 @app.route('/home')
 def home():
@@ -52,6 +58,18 @@ def api_register():
     return jsonify({'msg': 'success'})
 
 
+@app.route('/api/signout', methods=['POST'])
+def signout():
+    token_given = request.form['token']
+
+    decoded_token = jwt.decode(token_given, SECRET_KEY, algorithms="HS256")
+    user_id = decoded_token['id']
+
+    db.userInfo.remove({'email': user_id})
+
+    return jsonify({'msg': '탈퇴 완료!'})
+
+
 @app.route('/api/account/check_up', methods=['POST'])
 def valid_checker():
     email = request.form['email_give']
@@ -79,8 +97,7 @@ def token_maker():
 
         return jsonify({'token': token, 'msg': 'success'})
 
-    return jsonify({'msg':'Not available'})
-
+    return jsonify({'msg': 'Not available'})
 
 #댓글 저장하기
 @app.route('/api/comment_save', methods=['POST'])
@@ -104,7 +121,6 @@ def comment_save():
             return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
         except jwt.exceptions.DecodeError:
             return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
-
 
 #댓글 10개씩 보이도록
 @app.route('/api/comment_read', methods=['GET'])
@@ -142,6 +158,43 @@ def comment_like():
             return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
         except jwt.exceptions.DecodeError:
             return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+@app.route('/api/video/save', methods=['POST'])
+def video_save():
+
+    videoUrl = request.form['videoUrl']
+    checking_videoUrl = db.videos.find_one({'videoUrl': videoUrl}, {'_id': False})
+
+    if (checking_videoUrl is not None):
+        return jsonify({'msg': 'Not available'})
+
+    videoTitle = crawring_def.crawring_subject(videoUrl)
+    embedUrl = crawring_def.crawring_embedUrl(videoUrl)
+    videoThumbnail = crawring_def.crawring_thumbnailUrl(videoUrl)
+
+    doc = {
+        'videoUrl' : videoUrl,
+        'videoTitle' : videoTitle,
+        'embedUrl' : embedUrl,
+        'videoThumbnail' : videoThumbnail
+    }
+
+    db.videos.insert_one(doc)
+
+    return jsonify({'msg': 'success'})
+
+
+@app.route('/api/video/load', methods=['GET'])
+def video_load():
+    videos = list(db.videos.find({}, {'_id': False}))
+
+    randomNumber = math.floor(random.random() * len(videos))
+
+    videoTitle = videos[randomNumber]['videoTitle']
+    embedUrl = videos[randomNumber]['embedUrl']
+    videoThumbnail = videos[randomNumber]['thumbnailUrl']
+
+    return jsonify({'videoTitle': videoTitle, 'embedUrl': embedUrl, 'videoThumbnail': videoThumbnail})
 
 
 if __name__ == '__main__':
