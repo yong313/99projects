@@ -120,6 +120,7 @@ body {
 }
 
 .button:focus {
+  outline: none;
   color: #23a6d5;
   background-color:rgba(255, 255, 255, 1);
   transition: 0.3s;
