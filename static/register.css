@@ -8,6 +8,15 @@ body {
   align-items: center;
   flex-direction: column;
 }
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+a:hover {
+  color: #23a6d5;
+  cursor: alias;
+}
 
 @keyframes gradient {
   0% {
@@ -22,8 +31,8 @@ body {
 }
 
 .background {
-  width: 24%;
-  height: 60%;
+  width: 25%;
+  height: 75%;
   background-color: rgba(255, 255, 255, 0.4);
   display: flex;
   justify-content: center;
@@ -33,7 +42,7 @@ body {
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-#login_contain {
+#register_contain {
   width: 100%;
   opacity: 100%;
   z-index: 99;
@@ -41,65 +50,61 @@ body {
 
 .title {
   width: auto;
-  height: 55px;
+  height: 44px;
   background: url(/static/commend/99pro_logo_w.svg);
   background-repeat: no-repeat;
   background-position: center;
-  margin: 38px 0;
+  margin: 10px 0 30px 0;
 }
 
-.field {
+.hi_text_box {
   width: 100%;
   height: auto;
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 8px 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 1rem;
 }
 
-#comeon {
-  margin-bottom: 35px;
+.hi_text_1 {
+  margin-bottom: 10px;
 }
 
-.input{
-  width: 220px;
+.hi_text_3 {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  width: 210px;
   height: 35px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   color: #ffffff;
   border-bottom: 1px solid #ffffff;
   text-align: center;
-}
-
-.input:hover {
-  width: 190px;
-  outline: none;
-  border-bottom: 1px solid #ffffff;
-  transition: 0.35s;
-}
-
-
-.input:focus {
-  width: 175px;
-  outline: none;
-  border-bottom: 1px solid #ffffff;
-  transition: 0.35s;
-}
-
-.input::placeholder {
-  color: #ffffff;
-  text-align: center;
-}
-
-.control {
-  width: 100%;
-  height: auto;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.form-control::placeholder{
+  color: #ffffff;
+}
+
+.form-control:hover {
+  width: 220px;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  transition: 0.35s;
+}
+
+.form-control:focus {
+  width: 240px;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  transition: 0.35s;
 }
 
 .button {
@@ -112,6 +117,7 @@ body {
   font-size: 0.8rem;
   margin-bottom: 18px;
 }
+
 .button:hover {
   color: #23a6d5;
   background-color:rgba(255, 255, 255, 0.65);
@@ -123,4 +129,18 @@ body {
   color: #23a6d5;
   background-color:rgba(255, 255, 255, 1);
   transition: 0.3s;
+}
+
+#button_one{
+  width: 130px;
+  height: 32px;
+  margin-bottom: 25px;
+}
+
+#button_end_2{
+  margin-top: 20px;
+}
+
+#button_end {
+  margin-top: 5px;
 }
