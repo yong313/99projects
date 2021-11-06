@@ -22,6 +22,8 @@ db = client.login_prac
 
 SECRET_KEY = '14조'
 
+#test_branch주석
+
 @app.route('/home')
 def home():
     #사용자로부터 쿠키받음
