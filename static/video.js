@@ -27,9 +27,10 @@ async function videoSave() {
   const result = await response.json();
   const msg = await result["msg"];
   console.log(msg);
-  alert('동영상 저장 완료!')
+  alert("동영상 저장 완료!");
 }
 
+// 다음영상눌렀을시 비디오부분만 클라이언트사이드 랜더링
 async function videoLoad() {
   const options = {
     method: "get",

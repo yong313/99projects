@@ -17,6 +17,7 @@ function like_color_change_red() {
   document.getElementById("dislike_color_change_2").style.transition = "0.35s";
 }
 
+// 야간모드로 변경시
 function onoff({ target }) {
   target.classList.toggle("darkmode");
   const { sheet } = Object.assign(

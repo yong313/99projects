@@ -8,6 +8,7 @@ commentMainButton.addEventListener("click", commentSave);
 
 commentList.addEventListener("click", commentLike);
 
+// 댓글 등록시 댓글저장하면서 댓글 클라이언트사이드랜더링
 async function commentSave() {
   const comment = commentMainInput.value;
   const thumbnail = `${videoThumbnail}`;
@@ -27,6 +28,7 @@ async function commentSave() {
   showComment();
 }
 
+// 전체댓글 클라이언트사이드 랜더링
 async function showComment() {
   const options = {
     method: "get",
@@ -64,6 +66,7 @@ async function showComment() {
   }
 }
 
+// 좋아요 눌렀을시
 async function commentLike({ target }) {
   if (target.classList.contains("likeBtn")) {
     const comment_id = target.parentElement.parentElement.dataset.no;
