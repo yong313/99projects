@@ -22,7 +22,7 @@ db = client.login_prac
 
 SECRET_KEY = '14조'
 
-#test_branch주석
+#test_branch2주석
 
 @app.route('/home')
 def home():
