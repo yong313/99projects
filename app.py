@@ -16,26 +16,25 @@ from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://test:test@localhost', 27017)
-# client = MongoClient('localhost', 27017)
+#client = MongoClient('mongodb://test:test@localhost', 27017)
+client = MongoClient('localhost', 27017)
 db = client.login_prac
 
 SECRET_KEY = '14조'
 
-#test_branch주석
-#test_branch1주석
-#test_branch2주석
+#version1
 
+#로그인을 해야 열리는 메인페이지
 @app.route('/home')
 def home():
-    #사용자로부터 쿠키받음
-    token_receive = request.cookies.get('mytoken')
-    #쿠키가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
+    #http request의 header의 jwt를 받음
+    token_receive = request.headers.get('jwt')
+    #헤더에 jwt가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.userInfo.find_one({"email": payload['id']})
         return render_template('index.html', user_info=user_info)
-    #쿠키가 없을시 로그인페이지로
+    #헤더에 jwt가 없을시 로그인페이지로
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login"))
     except jwt.exceptions.DecodeError:
@@ -93,24 +92,32 @@ def valid_checker():
 
     return jsonify({'msg': 'available'})
 
-
+#로그인시 토큰생성api
 @app.route('/api/login', methods=['POST'])
 def token_maker():
-    email = request.form['email']
-    pw = request.form['password']
+    #post방식으로 request시에만 등록
+    if request.method == 'POST':
+        #로그인 페이지에서 유저가 쓴 email, password받음
+        email = request.form['email']
+        pw = request.form['password']
 
-    pw_encrypt = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+        #유저 비밀번호 암호화
+        pw_encrypt = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
-    findingResult = db.userInfo.find_one({'email': email, 'password': pw_encrypt}, {'_id': False})
+        #로그인 페이지에서 유저가 쓴 email, password를 데이터베이스에서 확인
+        findingResult = db.userInfo.find_one({'email': email, 'password': pw_encrypt}, {'_id': False})
 
-    if(findingResult is not None):
-        payload = {'id': email,
-                   'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=600)}
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-
-        return jsonify({'token': token, 'msg': 'success'})
-
-    return jsonify({'msg': 'Not available'})
+        #데이터베이스에 유저가 쓴 email과 password가 있을시 토큰생성
+        if findingResult:
+            #토큰의 payload식별자는 유저정보중 중복되지 않는 email로하고 토큰만료시간은 600초로 설정
+            payload = {'id': email,
+                       #쿠키사용시에는 exp를 프론트에서 설정
+                       'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=600)}
+            token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+            #생성된 토큰과 메세지 json형식으로 클라이언트로 response
+            return jsonify({'token': token, 'msg': 'success'})
+        #데이터베이스에 유저가 쓴 email과 password가 없을 시 토큰생성실패
+        return jsonify({'msg': 'Not available'})
 
 #댓글 저장하기
 @app.route('/api/comment_save', methods=['POST'])
@@ -120,7 +127,7 @@ def comment_save():
         #form형식으로 comment내용, thumbnail주소를 받고 쿠키로 유저식별
         comment_receive = request.form['comment']
         thumbnail_receive = request.form['thumbnail']
-        token_receive = request.cookies.get('mytoken')
+        token_receive = request.headers.get('jwt')
         #로그인되었을 경우 댓글등록
         try:
             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -145,7 +152,7 @@ def comment_read():
     #get형식으로 request올시에만 생성
     if request.method == 'GET':
         comments = list(db.comments.find({}))
-        token_receive = request.cookies.get('mytoken')
+        token_receive = request.headers.get('jwt')
         #로그인시 댓글관련 데이터 리턴
         try:
             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -166,7 +173,7 @@ def comment_read():
 def comment_like():
     if request.method == 'POST':
         comment_id = request.form['comment_id']
-        token_receive = request.cookies.get('mytoken')
+        token_receive = request.headers.get('jwt')
         #로그인시 댓글좋아요 수와 댓글을 색깔 리턴
         try:
             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
