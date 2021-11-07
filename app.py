@@ -22,15 +22,12 @@ db = client.login_prac
 
 SECRET_KEY = '14조'
 
-#test_branch주석
-#test_branch1주석
-#test_branch2주석
+#main 
 
-#로그인을 해야 열리는 메인페이지
 @app.route('/home')
 def home():
-    #http request의 header의 jwt를 받음
-    token_receive = request.headers.get('jwt')
+    #사용자로부터 쿠키받음
+    token_receive = request.cookies.get('mytoken')
     #쿠키가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -129,7 +126,7 @@ def comment_save():
         #form형식으로 comment내용, thumbnail주소를 받고 쿠키로 유저식별
         comment_receive = request.form['comment']
         thumbnail_receive = request.form['thumbnail']
-        token_receive = request.headers.get('jwt')
+        token_receive = request.cookies.get('mytoken')
         #로그인되었을 경우 댓글등록
         try:
             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
@@ -175,7 +172,7 @@ def comment_read():
 def comment_like():
     if request.method == 'POST':
         comment_id = request.form['comment_id']
-        token_receive = request.headers.get('jwt')
+        token_receive = request.cookies.get('mytoken')
         #로그인시 댓글좋아요 수와 댓글을 색깔 리턴
         try:
             payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
