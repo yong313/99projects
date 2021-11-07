@@ -58,6 +58,7 @@ async function showComment() {
             </p>
             <p class="list_user_text">
             ${comment}
+
             </p>
           </div>
         </div>
