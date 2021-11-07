@@ -22,9 +22,7 @@ db = client.login_prac
 
 SECRET_KEY = '14조'
 
-#test_branch주석
-#test_branch1주석
-#test_branch2주석
+#version1
 
 #로그인을 해야 열리는 메인페이지
 @app.route('/home')
