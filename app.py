@@ -27,9 +27,10 @@ SECRET_KEY = '14조'
 #로그인을 해야 열리는 메인페이지
 @app.route('/home')
 def home():
-    #http request의 header의 cookie를 받음
+    #http header에 있는 쿠키를 받음
     token_receive = request.cookies.get('mytoken')
     #쿠키가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
+    print(token_receive)
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.userInfo.find_one({"email": payload['id']})

@@ -16,8 +16,8 @@ async function login_info() {
   const result = await response.json();
   //서버에서 로그인이 성공시
   if (result["msg"] == "success") {
-    document.cookie("mytoken"=response["token"]);
-    // //jwt를 localStorage에 저장
+    // jwt를 쿠키에 저장
+    document.cookie = `mytoken=${result["token"]}`;
     alert("환영합니다!");
     // 메인페이지로 이동
     window.location.href = "/home";
