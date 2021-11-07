@@ -29,8 +29,7 @@ async function login_info() {
             }
         };
         // 메인 페이지를 열기 위한 ajax요청
-        window.location.href = '/home'
-        // fetch("/home", homeOptions)
+        fetch("/home", homeOptions)
     //서버에서 로그인 실패시
     }else{
         alert('ID와 비밀번호를 확인해주세요')
