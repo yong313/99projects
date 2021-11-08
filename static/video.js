@@ -27,8 +27,10 @@ async function videoSave() {
   const result = await response.json();
   const msg = await result["msg"];
   console.log(msg);
+  alert("동영상 저장 완료!");
 }
 
+// 다음영상눌렀을시 비디오부분만 클라이언트사이드 랜더링
 async function videoLoad() {
   const options = {
     method: "get",
@@ -46,7 +48,7 @@ async function videoLoad() {
       </div>
       <div class="video_information">
         <div class="info_1">
-          <p class="rank_text">:교차된_검: 분노의 투기장 - ARENA of ANGER :교차된_검:</p>
+          <p class="rank_text">⚔️ 분노의 투기장 - ARENA of ANGER ⚔️</p>
           <p class="name_text">${videoTitle}</p>
           <p class="views_text">조회수 554,905회 2021. 10. 30.</p>
         </div>

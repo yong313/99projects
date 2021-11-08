@@ -5,30 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--favicon-->
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="/static/commend/favicon.ico"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="/static/commend/favicon.ico"/>
     <!--fontawesome-->
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
-    <!--java script-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!--reset.css-->
     <link rel="stylesheet" href="/static/reset.css" />
     <!--style.css-->
     <link rel="stylesheet" href="/static/style.css" />
-    <!--java script-->
+
     <title>분노의 투기장 - ARENA of ANGER</title>
+    <!--java script-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   </head>
   <body>
-    <!--금동 매니저님께-->
 
     <!--헤더 test-->
     <div class="header">
@@ -50,7 +40,7 @@
         />
       </div>
       <div class="twinkle" id="twinkle">
-        <i class="far fa-moon uuu"></i>
+        <i class="far fa-moon"></i>
       </div>
       <input type="button" class="withdrawal" id="signout" value="회원탈퇴" />
       <input type="button" class="logout_button" id="logout" value="로그아웃" />
@@ -100,5 +90,6 @@
     <script defer src="{{ url_for('static', filename='video.js') }}"></script>
     <script src="{{ url_for('static', filename='ranking.js') }}"></script>
     <script src="{{ url_for('static', filename='logout_signout.js') }}"></script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
 </html>
