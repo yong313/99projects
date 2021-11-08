@@ -24,16 +24,23 @@ SECRET_KEY = '14조'
 
 #version1
 
-#로그인을 해야 열리는 메인페이지
 @app.route('/home')
 def home():
+    # if not user_info:
+    #     return redirect(url_for('login'))
+    return render_template('index.html')
+
+#로그인을 해야 열리는 메인페이지
+@app.route('/api/home')
+def home_gate():
     #http request의 header의 jwt를 받음
     token_receive = request.headers.get('jwt')
     #헤더에 jwt가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.userInfo.find_one({"email": payload['id']})
-        return render_template('index.html', user_info=user_info)
+        return redirect(url_for('home'))
+        # return render_template('index.html', user_info=user_info)
     #헤더에 jwt가 없을시 로그인페이지로
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login"))
