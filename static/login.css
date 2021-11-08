@@ -89,6 +89,8 @@ body {
 
 .input:hover {
   width: 190px;
+<<<<<<< HEAD
+=======
   outline: none;
   border-bottom: 1px solid #ffffff;
   transition: 0.35s;
@@ -97,11 +99,23 @@ body {
 
 .input:focus {
   width: 175px;
+>>>>>>> 2662e725865324070371972aa2d901e595b2e57e
   outline: none;
   border-bottom: 1px solid #ffffff;
   transition: 0.35s;
 }
 
+<<<<<<< HEAD
+
+.input:focus {
+  width: 175px;
+  outline: none;
+  border-bottom: 1px solid #ffffff;
+  transition: 0.35s;
+}
+
+=======
+>>>>>>> 2662e725865324070371972aa2d901e595b2e57e
 .input::placeholder {
   color: #ffffff;
   text-align: center;
