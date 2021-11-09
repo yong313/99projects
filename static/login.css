@@ -39,12 +39,12 @@ body {
 }
 
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #login_contain {
@@ -77,7 +77,7 @@ body {
   margin-bottom: 35px;
 }
 
-.input{
+.input {
   width: 220px;
   height: 35px;
   background-color: rgba(0, 0, 0, 0);
@@ -89,23 +89,10 @@ body {
 
 .input:hover {
   width: 190px;
-<<<<<<< HEAD
-=======
   outline: none;
   border-bottom: 1px solid #ffffff;
   transition: 0.35s;
 }
-
-
-.input:focus {
-  width: 175px;
->>>>>>> 2662e725865324070371972aa2d901e595b2e57e
-  outline: none;
-  border-bottom: 1px solid #ffffff;
-  transition: 0.35s;
-}
-
-<<<<<<< HEAD
 
 .input:focus {
   width: 175px;
@@ -114,8 +101,6 @@ body {
   transition: 0.35s;
 }
 
-=======
->>>>>>> 2662e725865324070371972aa2d901e595b2e57e
 .input::placeholder {
   color: #ffffff;
   text-align: center;
@@ -133,7 +118,7 @@ body {
 .button {
   width: 195px;
   height: 40px;
-  background-color:rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border: none;
   border-radius: 20px;
   color: #ffffff;
@@ -142,7 +127,7 @@ body {
 }
 .button:hover {
   color: #23a6d5;
-  background-color:rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.65);
   transition: 0.3s;
   font-weight: 500;
 }
@@ -150,6 +135,6 @@ body {
 .button:focus {
   outline: none;
   color: #23a6d5;
-  background-color:rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1);
   transition: 0.3s;
 }
