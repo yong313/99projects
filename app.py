@@ -2,9 +2,15 @@ import math
 import random
 
 import jwt,hashlib
-from flask import Flask, render_template, jsonify, request, session, redirect, url_for
+
+#hashlib 쓰는 것과 밑에 werkzeug.security쓰는 거는 비밀번호 설정할 때 무슨차이지?
+#from werkzeug.security import generate_password_hash, check_password_hash
+
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for, g
 
 app = Flask(__name__)
+# session을 위한 암호화 키
+app.secret_key = "14조"
 
 import datetime
 
@@ -24,22 +30,33 @@ SECRET_KEY = '14조'
 
 #서버기반인증방식
 
+# 전역 객체 g를 app 라우트전에 추가하여 g를 사용할 수 있도록함 ==> g로 현재 로그인된 user의 정보 가져올 수 있음
+# 전역 객체 g를 꼭 써야하나? 안쓰면 계속 session받는 함수 중복해서 써줘야됨 중복을 피하기 위해서는 g를 써주는게 좋을듯
+# 근데 지금은 g안에 user밖에 없어서 굳이 한번 더 거치는 느낌이 있음 없어도 될듯?
+@app.before_request
+def load_user():
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = db.userInfo.find_one({"email": user_id})
+
+# login어노테이션으로 한번에 쓰자
+# def login_checker():
+#     if g.user is None:
+#         return redirect(url_for('login'))
+
 #로그인을 해야 열리는 메인페이지
 @app.route('/home')
 def home():
-    #http header에 있는 쿠키를 받음
-    token_receive = request.cookies.get('mytoken')
-    #쿠키가 있을시 메인페이즈를 열어주고 payload에서 받은 유저의 이메일을 통해 유저식별
-    print(token_receive)
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.userInfo.find_one({"email": payload['id']})
-        return render_template('index.html', user_info=user_info)
-    #쿠키가 없을시 로그인페이지로
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("login"))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("login"))
+    # print(session)
+    # 쿠키의 name컬럼의 session에서 user_id를 받아옴 
+    # 1. 그럼 request.cookies.get('session')해도 받을까? 그럼 암호화된 value를 받게 되는데 거기서 user_id를 디코딩해야되나?
+    # 2. 1개뿐만아니라('user_Id'만 저장되있는 현재) 여러개를 session에 담아도 될까? 어떤 형태로 담기는 거지?
+    # login_checker()
+    user_info = g.user
+    return render_template('index.html', user_info = user_info)
+
 
 #로그인페이지 랜더링
 @app.route('/')
@@ -70,17 +87,23 @@ def api_register():
 
     return jsonify({'msg': 'success'})
 
+@app.route('/api/logout')
+def logout():
+    # clear()가 요청을 보내는 사람의 브라우저에 있는 모든 session만 지우는 듯함 아마 user_id뿐만 아니라 다른것도 있었으면 pop()으로 골라서 지울 수도 있을듯
+    # 또한 프론트에서 이 작업을 할 수 없는게 document.cookie를 하면 session이 잡히질 않음 (왜 쿠키에있지만 쿠키에 잡히질 않지?)
+    session.clear()
+    return jsonify({'ok': True})
 
-@app.route('/api/signout', methods=['POST'])
+
+@app.route('/api/signout')
 def signout():
-    token_given = request.form['token']
-
-    decoded_token = jwt.decode(token_given, SECRET_KEY, algorithms="HS256")
-    user_id = decoded_token['id']
-
-    db.userInfo.remove({'email': user_id})
-
-    return jsonify({'msg': '탈퇴 완료!'})
+    if g.user is None:
+        return redirect(url_for('login'))
+    user_id = session.get('user_id')
+    db.userInfo.delete_one({'email': user_id})
+    # session.clear()안 넣어도 되나? 안넣어도 되긴하는데 cookie의 session창에 남으니까 지워주자
+    session.clear()
+    return jsonify({'ok': True})
 
 
 @app.route('/api/account/check_up', methods=['POST'])
@@ -106,18 +129,15 @@ def token_maker():
         pw_encrypt = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
         #로그인 페이지에서 유저가 쓴 email, password를 데이터베이스에서 확인
-        findingResult = db.userInfo.find_one({'email': email, 'password': pw_encrypt}, {'_id': False})
-
+        user = db.userInfo.find_one({'email': email, 'password': pw_encrypt}, {'_id': False})
         #데이터베이스에 유저가 쓴 email과 password가 있을시 토큰생성
-        if findingResult:
-            #토큰의 payload식별자는 유저정보중 중복되지 않는 email로하고 토큰만료시간은 600초로 설정
-            payload = {'id': email,
-                       #쿠키사용시에는 exp를 프론트에서 설정
-                       'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=600)}
-            token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-            #생성된 토큰과 메세지 json형식으로 클라이언트로 response
-            return jsonify({'token': token, 'msg': 'success'})
-        #데이터베이스에 유저가 쓴 email과 password가 없을 시 토큰생성실패
+        if user:
+            # 세션을 왜 clear()해주는 거지? 그 전에 있던 정보들을 없애면 로그인했던 사람들은 로그아웃되는거 아닌가?
+            session.clear()
+            session['user_id'] = user['email']
+            # session이 쿠키에 자동으로 생성됨 토큰인증방식은 프론트에서 토큰을 받은 후 쿠키에 집어넣어 줬어야 했는데 session에 저장만하면 쿠키에 자동으로 생성
+            return jsonify({'msg':'success'})
+        #데이터베이스에 유저가 쓴 email과 password가 없을 시 세션에 아이디 저장실패
         return jsonify({'msg': 'Not available'})
 
 #댓글 저장하기
