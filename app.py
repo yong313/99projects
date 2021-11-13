@@ -22,6 +22,8 @@ from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 
+from functools import wraps
+
 #client = MongoClient('mongodb://test:test@localhost', 27017)
 client = MongoClient('localhost', 27017)
 db = client.login_prac
@@ -45,11 +47,22 @@ def load_user():
 # def login_checker():
 #     if g.user is None:
 #         return redirect(url_for('login'))
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            # login하기 전 페이지로 가기 위한 변수 next
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 
 #로그인을 해야 열리는 메인페이지
 @app.route('/home')
+@login_required
 def home():
-    # print(session)
+    # print(request.cookies) 쿠키에 session이 담겨서 보내지는데 왜 브라우저엔 session이 안뜨지?
     # 쿠키의 name컬럼의 session에서 user_id를 받아옴 
     # 1. 그럼 request.cookies.get('session')해도 받을까? 그럼 암호화된 value를 받게 되는데 거기서 user_id를 디코딩해야되나?
     # 2. 1개뿐만아니라('user_Id'만 저장되있는 현재) 여러개를 session에 담아도 될까? 어떤 형태로 담기는 거지?
@@ -88,6 +101,7 @@ def api_register():
     return jsonify({'msg': 'success'})
 
 @app.route('/api/logout')
+@login_required
 def logout():
     # clear()가 요청을 보내는 사람의 브라우저에 있는 모든 session만 지우는 듯함 아마 user_id뿐만 아니라 다른것도 있었으면 pop()으로 골라서 지울 수도 있을듯
     # 또한 프론트에서 이 작업을 할 수 없는게 document.cookie를 하면 session이 잡히질 않음 (왜 쿠키에있지만 쿠키에 잡히질 않지?)
@@ -96,6 +110,7 @@ def logout():
 
 
 @app.route('/api/signout')
+@login_required
 def signout():
     if g.user is None:
         return redirect(url_for('login'))
@@ -142,6 +157,7 @@ def token_maker():
 
 #댓글 저장하기
 @app.route('/api/comment_save', methods=['POST'])
+@login_required
 def comment_save():
     #post방식으로 request시에만 등록
     if request.method == 'POST':
@@ -169,6 +185,7 @@ def comment_save():
 
 #댓글 클라이언트사이드 랜더링
 @app.route('/api/comment_read', methods=['GET'])
+@login_required
 def comment_read():
     #get형식으로 request올시에만 생성
     if request.method == 'GET':
@@ -191,6 +208,7 @@ def comment_read():
 
 #댓글 좋아요 클라이언트사이드랜더링
 @app.route('/api/comment_like', methods=['POST'])
+@login_required
 def comment_like():
     if request.method == 'POST':
         comment_id = request.form['comment_id']
@@ -222,6 +240,7 @@ def comment_like():
 
 
 @app.route('/api/video/save', methods=['POST'])
+@login_required
 def video_save():
 
     videoUrl = request.form['videoUrl']
@@ -248,6 +267,7 @@ def video_save():
 
 
 @app.route('/api/video/load', methods=['GET'])
+@login_required
 def video_load():
     videos = list(db.videos.find({}, {'_id': False}))
 
