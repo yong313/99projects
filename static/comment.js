@@ -22,10 +22,13 @@ async function commentSave() {
   };
   const response = await fetch("/api/comment_save", options);
   const result = await response.json();
-  const msg = await result["msg"];
-  console.log(msg);
-  commentList.innerHTML = "";
-  showComment();
+  const ok = await result["ok"];
+  if (ok) {
+    commentList.innerHTML = "";
+    showComment();
+  } else {
+    alert("댓글 등록이 실패하셨습니다");
+  }
 }
 
 // 전체댓글 클라이언트사이드 랜더링

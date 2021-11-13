@@ -164,45 +164,34 @@ def comment_save():
         #form형식으로 comment내용, thumbnail주소를 받고 쿠키로 유저식별
         comment_receive = request.form['comment']
         thumbnail_receive = request.form['thumbnail']
-        token_receive = request.cookies.get('mytoken')
         #로그인되었을 경우 댓글등록
         try:
-            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-            user_info = db.userInfo.find_one({"email": payload['id']})
-            user_name = user_info['name']
+            user_name = g.user['name']
             doc = {
                 'content': comment_receive,
                 'user_name': user_name,
                 'thumbnail': thumbnail_receive
             }
             db.comments.insert_one(doc)
-            return jsonify({'msg': '댓글이 등록되었습니다.'})
-        #로그인 안되었거나 토큰만료시 댓글등록 실패
-        except jwt.ExpiredSignatureError:
-            return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-        except jwt.exceptions.DecodeError:
-            return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+            return jsonify({'ok': True})
+        #로그인 안되었거나 세션쿠키만료시 댓글등록 실패
+        except:
+            return redirect(url_for('login'))
 
 #댓글 클라이언트사이드 랜더링
 @app.route('/api/comment_read', methods=['GET'])
-@login_required
 def comment_read():
     #get형식으로 request올시에만 생성
     if request.method == 'GET':
         comments = list(db.comments.find({}))
-        token_receive = request.cookies.get('mytoken')
         #로그인시 댓글관련 데이터 리턴
         try:
-            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-            user_info = db.userInfo.find_one({"email": payload['id']})
-            user_id = user_info['email']
+            user_id = g.user['email']
             res = list(map(lambda item: {'_id': str(item["_id"]),'content':item['content'],'user_name':item['user_name'],'thumbnail':item['thumbnail'],'like_num':db.commentLike.count_documents({'comment_id':str(item["_id"])}), 'color':'likeBtn_color' if db.commentLike.find_one({'comment_id':str(item["_id"]),'user_id':user_id}) else 'unlikeBtn_color'}, comments))
             return jsonify({'all_comments': res})   
-        #로그인 실패or토큰없을시 로그인페이지로
-        except jwt.ExpiredSignatureError:
-            return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-        except jwt.exceptions.DecodeError:
-            return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        #로그인 실패or세션쿠키없을시 로그인페이지로
+        except:
+            return redirect(url_for("login"))
         
 
 
@@ -212,12 +201,9 @@ def comment_read():
 def comment_like():
     if request.method == 'POST':
         comment_id = request.form['comment_id']
-        token_receive = request.cookies.get('mytoken')
         #로그인시 댓글좋아요 수와 댓글을 색깔 리턴
         try:
-            payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-            user_info = db.userInfo.find_one({"email": payload['id']})
-            user_id = user_info['email']
+            user_id = g.user['email']
             like_checker = db.commentLike.find_one({'comment_id':comment_id,'user_id':user_id})
             #좋아요 안누른 상태일경우 눌렀을때 좋아요 데이터베이스에 추가해주고 색깔은 파란색으로
             if not like_checker:
@@ -233,10 +219,8 @@ def comment_like():
                 db.commentLike.delete_one({'comment_id':comment_id,'user_id':user_id})
                 like_num = db.commentLike.count_documents({'comment_id':comment_id})
                 return jsonify({'like_num': like_num, 'color':'grey'})
-        except jwt.ExpiredSignatureError:
-            return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
-        except jwt.exceptions.DecodeError:
-            return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+        except:
+            return redirect(url_for("login"))
 
 
 @app.route('/api/video/save', methods=['POST'])
@@ -267,7 +251,6 @@ def video_save():
 
 
 @app.route('/api/video/load', methods=['GET'])
-@login_required
 def video_load():
     videos = list(db.videos.find({}, {'_id': False}))
 
