@@ -81,8 +81,8 @@ def login():
 def register():
     return render_template('register.html')
 
-
-@app.route('/api/account', methods=['POST'])
+#api/user post
+@app.route('/api/user', methods=['POST'])
 def api_register():
     email = request.form['email_give']
     pw = request.form['pw_give']
@@ -100,7 +100,8 @@ def api_register():
 
     return jsonify({'msg': 'success'})
 
-@app.route('/api/logout')
+#api/logout delete
+@app.route('/api/logout', methods=['DELETE'])
 @login_required
 def logout():
     # clear()가 요청을 보내는 사람의 브라우저에 있는 모든 session만 지우는 듯함 아마 user_id뿐만 아니라 다른것도 있었으면 pop()으로 골라서 지울 수도 있을듯
@@ -109,7 +110,9 @@ def logout():
     return jsonify({'ok': True})
 
 
-@app.route('/api/signout')
+#api/user delete
+#비밀번호 확인하는 함수 더 만들자
+@app.route('/api/user', methods=['DELETE'])
 @login_required
 def signout():
     if g.user is None:
@@ -121,7 +124,8 @@ def signout():
     return jsonify({'ok': True})
 
 
-@app.route('/api/account/check_up', methods=['POST'])
+#api/email post
+@app.route('/api/email', methods=['POST'])
 def valid_checker():
     email = request.form['email_give']
     checking_email = db.userInfo.find_one({'email': email}, {'_id': False})
@@ -131,6 +135,7 @@ def valid_checker():
 
     return jsonify({'msg': 'available'})
 
+#api/login post
 #로그인시 토큰생성api
 @app.route('/api/login', methods=['POST'])
 def token_maker():
@@ -155,8 +160,9 @@ def token_maker():
         #데이터베이스에 유저가 쓴 email과 password가 없을 시 세션에 아이디 저장실패
         return jsonify({'msg': 'Not available'})
 
+#api/comment post
 #댓글 저장하기
-@app.route('/api/comment_save', methods=['POST'])
+@app.route('/api/comment', methods=['POST'])
 @login_required
 def comment_save():
     #post방식으로 request시에만 등록
@@ -178,8 +184,9 @@ def comment_save():
         except:
             return redirect(url_for('login'))
 
+#api/comment get
 #댓글 클라이언트사이드 랜더링
-@app.route('/api/comment_read', methods=['GET'])
+@app.route('/api/comments', methods=['GET'])
 def comment_read():
     #get형식으로 request올시에만 생성
     if request.method == 'GET':
@@ -194,9 +201,9 @@ def comment_read():
             return redirect(url_for("login"))
         
 
-
+#api/comment/like post
 #댓글 좋아요 클라이언트사이드랜더링
-@app.route('/api/comment_like', methods=['POST'])
+@app.route('/api/comment/like', methods=['POST'])
 @login_required
 def comment_like():
     if request.method == 'POST':
@@ -223,7 +230,8 @@ def comment_like():
             return redirect(url_for("login"))
 
 
-@app.route('/api/video/save', methods=['POST'])
+#api/video post
+@app.route('/api/video', methods=['POST'])
 @login_required
 def video_save():
 
@@ -250,7 +258,8 @@ def video_save():
     return jsonify({'msg': 'success'})
 
 
-@app.route('/api/video/load', methods=['GET'])
+#api/video get
+@app.route('/api/videos', methods=['GET'])
 def video_load():
     videos = list(db.videos.find({}, {'_id': False}))
 
@@ -265,8 +274,9 @@ def video_load():
     return jsonify({'videoTitle': videoTitle, 'embedUrl': embedUrl, 'videoThumbnail': videoThumbnail, 'videoUrl':videoUrl, 'youtuber':youtuber})
 
 
+#api/comment/rank get
 #댓글 랭킹 api
-@app.route('/api/comment_ranking', methods=['GET'])
+@app.route('/api/comments/rank', methods=['GET'])
 def comment_ranking():
     if request.method == 'GET':
         comments = db.commentLike.find({},{'_id':False,'user_id':False})

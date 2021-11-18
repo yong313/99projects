@@ -7,7 +7,7 @@ signoutBtn.addEventListener("click", signout);
 async function logout() {
   const options = {
     //   로그아웃 get방식 맞나? 어차피 데이터 줄거아니니까 상관없을듯
-    method: "GET",
+    method: "DELETE",
   };
   const response = await fetch("/api/logout", options);
   //   json()왜 붙여주는 거였더라..?

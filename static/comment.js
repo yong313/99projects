@@ -20,7 +20,7 @@ async function commentSave() {
     },
     body: `comment=${comment}&thumbnail=${thumbnail}`,
   };
-  const response = await fetch("/api/comment_save", options);
+  const response = await fetch("/api/comment", options);
   const result = await response.json();
   const ok = await result["ok"];
   if (ok) {
@@ -36,7 +36,7 @@ async function showComment() {
   const options = {
     method: "get",
   };
-  const response = await fetch("/api/comment_read", options);
+  const response = await fetch("/api/comments", options);
   const result = await response.json();
   const comments = result["all_comments"];
   for (let i = 0; i < comments.length; i++) {
@@ -81,7 +81,7 @@ async function commentLike({ target }) {
       },
       body: `comment_id=${comment_id}`,
     };
-    const response = await fetch("/api/comment_like", options);
+    const response = await fetch("/api/comment/like", options);
     const result = await response.json();
     const likeNum = await result["like_num"];
     const color = await result["color"];

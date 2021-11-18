@@ -10,7 +10,7 @@ async function showRanking() {
   const options = {
     method: "get",
   };
-  const response = await fetch("/api/comment_ranking", options);
+  const response = await fetch("/api/comments/rank", options);
   const result = await response.json();
   const rankers = result["rankers"];
   const temp_html = `

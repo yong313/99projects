@@ -23,7 +23,7 @@ async function videoSave() {
     },
     body: `videoUrl=${videoUrl}`,
   };
-  const response = await fetch("/api/video/save", options);
+  const response = await fetch("/api/video", options);
   const result = await response.json();
   const msg = await result["msg"];
   console.log(msg);
@@ -35,7 +35,7 @@ async function videoLoad() {
   const options = {
     method: "get",
   };
-  const response = await fetch("/api/video/load", options);
+  const response = await fetch("/api/videos", options);
   const result = await response.json();
   const videoTitle = result["videoTitle"];
   const embedUrl = result["embedUrl"];
