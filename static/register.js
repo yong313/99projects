@@ -44,7 +44,7 @@ function user_register() {
     }
     $.ajax({
       type: "POST",
-      url: "/api/account",
+      url: "/api/user",
       data: {
         email_give: email,
         pw_give: pw,

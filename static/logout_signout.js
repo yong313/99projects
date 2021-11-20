@@ -25,9 +25,9 @@ async function signout() {
   if (confirm("회원 탈퇴 하시겠습니까?")) {
     const options = {
       //   회원탈퇴 get방식 맞나? 어차피 데이터 줄거아니니까 get이 맞을듯 그래도 확실히 고민해보자 get post 구분기준
-      method: "GET",
+      method: "DELETE",
     };
-    const response = await fetch("/api/signout", options);
+    const response = await fetch("/api/user", options);
     const result = await response.json();
     if (result["ok"]) {
       alert("회원 탈퇴 되셨습니다");
